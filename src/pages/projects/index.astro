@@ -1,0 +1,33 @@
+---
+import Page from "../../layouts/Page.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+
+const posts = (await getCollection("projects")).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<Page title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section>
+    <ul class="flex flex-wrap justify-center gap-4">
+      {
+        posts.map((post) => (
+          <li class="relative max-w-80 h-auto rounded-xl overflow-hidden hover:rotate-3 duration-75">
+            <a href={`/projects/${post.slug}/`}>
+              <img src={post.data.heroImage} alt="" />
+              <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-black/0" />
+              <div class="absolute top-0 w-full text-white p-2">
+                <h3 class="text-xl font-bold text-shadow">{post.data.title}</h3>
+                <p class="text-base leading-6 text-shadow">
+                  {post.data.description}
+                </p>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Page>
