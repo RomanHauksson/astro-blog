@@ -1,21 +1,9 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Page from "../layouts/Page.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <h1>Hi, my name's Roman.</h1>
-      <p>I'm trying to make the future go well.</p>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Page title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <h1>Hi, my name's Roman.</h1>
+  <p>I'm trying to make the future go well.</p>
+</Page>
