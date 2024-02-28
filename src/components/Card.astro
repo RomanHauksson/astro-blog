@@ -1,0 +1,11 @@
+---
+interface Props {
+  q: string;
+  a: string;
+  image?: URL;
+}
+
+const { q, a, image } = Astro.props;
+---
+
+<orbit-prompt question={q} answer={a}></orbit-prompt>
