@@ -1,14 +1,19 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import ActionButton from "./ActionButton.astro";
 import { SITE_TITLE } from "../consts";
 ---
 
-<header>
-  <nav class="flex flex-row justify-between">
-    <h2><a href="/">{SITE_TITLE}</a></h2>
-    <div class="flex flex-row">
+<header class="sticky top-0 z-10">
+  <nav
+    class="flex flex-row items-center justify-between p-3 bg-gradient-to-b from-white/90 to-white/10 dark:from-slate-800/90 dark:to-slate-800/10 backdrop-blur"
+  >
+    <h1 class="font-bold text-lg text-black dark:text-white">
+      <a href="/">{SITE_TITLE}</a>
+    </h1>
+    <div class="flex flex-row gap-4">
       <HeaderLink href="/projects">projects</HeaderLink>
-      <HeaderLink href="/about">about</HeaderLink>
+      <ActionButton href="/contact">contact</ActionButton>
     </div>
   </nav>
 </header>

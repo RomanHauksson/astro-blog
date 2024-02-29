@@ -9,11 +9,22 @@ const { title, description } = Astro.props;
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
+    <script>
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
   </head>
 
-  <body class="p-4">
+  <body class="flex flex-col gap-6 bg-slate-100 dark:bg-slate-800">
     <Header />
-    <main class="max-w-[60rem] m-auto">
+    <main class="max-w-[60rem] m-auto px-3">
       <slot />
     </main>
     <Footer />
