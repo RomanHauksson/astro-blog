@@ -12,7 +12,7 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
 
 <a
   href={href}
-  class=""
+  class="flex items-center font-bold"
   class:list={[className, { active: isActive }]}
   {...props}
 >

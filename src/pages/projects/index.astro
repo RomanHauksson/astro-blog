@@ -10,14 +10,15 @@ const posts = (await getCollection("projects")).sort(
 ---
 
 <Page title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <section>
-    <ul class="flex flex-wrap justify-center gap-4">
+  <section class="flex flex-col gap-4">
+    <h1 class="font-bold text-3xl">projects</h1>
+    <ul class="flex flex-wrap justify-center gap-4 w-full">
       {
         posts.map((post) => (
-          <li class="relative max-w-80 h-auto rounded-xl overflow-hidden hover:rotate-3 duration-75">
+          <li class="grow shrink basis-60 relative h-auto rounded-xl overflow-hidden hover:rotate-3 active:rotate-0 active:scale-90 duration-75 shadow-lg">
             <a href={`/projects/${post.slug}/`}>
               <img src={post.data.heroImage} alt="" />
-              <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-black/0" />
+              <div class="absolute inset-0 bg-gradient-to-b from-black/80" />
               <div class="absolute top-0 w-full text-white p-2">
                 <h3 class="text-xl font-bold text-shadow">{post.data.title}</h3>
                 <p class="text-base leading-6 text-shadow">
