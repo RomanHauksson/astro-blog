@@ -4,6 +4,17 @@ import Page from "../layouts/Page.astro";
 ---
 
 <Page title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <h1>Hi, my name's Roman.</h1>
-  <p>I'm trying to make the future go well.</p>
+  <section>
+    <div class="flex flex-row gap-4">
+      <img src="headshot.jpg" class="w-48 rounded-2xl" />
+      <div class="flex flex-col">
+        <h1 class="font-bold text-3xl">Hi, my name's Roman.</h1>
+        <p>I'm trying to make the future go well.</p>
+      </div>
+    </div>
+    <p>Some more information about my mission.</p>
+  </section>
+  <section>
+    <h2 class="font-bold text-xl">selected projects</h2>
+  </section>
 </Page>
