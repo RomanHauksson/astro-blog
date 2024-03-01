@@ -23,7 +23,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     crossorigin="anonymous"></script>
 
   <article>
-    <div class="hero-image">
+    <div class="hero-image rounded overflow-hidden">
       {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
     </div>
     <div class="prose prose-slate prose-invert">

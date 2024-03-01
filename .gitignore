@@ -25,5 +25,7 @@ pnpm-debug.log*
 # GIMP files
 *.xfc
 
+# non-webp or -webm files (cringe)
 *.png
 *.jpg
+*.mp4
