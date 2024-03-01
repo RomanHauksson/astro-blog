@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # GIMP files
 *.xfc
+
+*.png
+*.jpg
