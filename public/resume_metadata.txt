@@ -1,0 +1,46 @@
+InfoBegin
+InfoKey: ModDate
+InfoValue: D:20230414231515Z
+InfoBegin
+InfoKey: PTEX.Fullbanner
+InfoValue: This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) kpathsea version 6.3.4
+InfoBegin
+InfoKey: CreationDate
+InfoValue: D:20230414231515Z
+InfoBegin
+InfoKey: Title
+InfoValue: Roman Hauksson's resume
+InfoBegin
+InfoKey: Creator
+InfoValue: Roman Hauksson
+InfoBegin
+InfoKey: Producer
+InfoValue: pdfTeX-1.40.24
+PdfID0: 0e08d5745b3714de777943aa958c3b3f
+PdfID1: d751e721b402556963db3b125eedebab
+NumberOfPages: 1
+BookmarkBegin
+BookmarkTitle: Education
+BookmarkLevel: 1
+BookmarkPageNumber: 1
+BookmarkBegin
+BookmarkTitle: Work Experience
+BookmarkLevel: 1
+BookmarkPageNumber: 1
+BookmarkBegin
+BookmarkTitle: Research
+BookmarkLevel: 1
+BookmarkPageNumber: 1
+BookmarkBegin
+BookmarkTitle: Leadership
+BookmarkLevel: 1
+BookmarkPageNumber: 1
+BookmarkBegin
+BookmarkTitle: Achievements
+BookmarkLevel: 1
+BookmarkPageNumber: 1
+PageMediaBegin
+PageMediaNumber: 1
+PageMediaRotation: 0
+PageMediaRect: 0 0 612 792
+PageMediaDimensions: 612 792

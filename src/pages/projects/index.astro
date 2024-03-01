@@ -1,6 +1,5 @@
 ---
 import Page from "../../layouts/Page.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 
@@ -9,20 +8,23 @@ const posts = (await getCollection("projects")).sort(
 );
 ---
 
-<Page title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<Page title={"projects"} description={"Roman Hauksson's projects."}>
   <section class="flex flex-col gap-4">
-    <h1 class="font-bold text-3xl">projects</h1>
+    <p>
+      Note: i'm still in the process of refactoring my website from Hugo to
+      Astro. More projects will be added soon ;).
+    </p>
     <ul class="flex flex-wrap justify-center gap-4 w-full">
       {
         posts.map((post) => (
-          <li class="grow shrink basis-60 relative h-auto rounded-xl overflow-hidden hover:rotate-3 active:rotate-0 active:scale-90 duration-75 shadow-lg">
+          <li class="grow-0 shrink basis-60 relative h-auto rounded-xl overflow-hidden hover:rotate-3 active:rotate-0 active:scale-90 duration-75 shadow-lg">
             <a href={`/projects/${post.slug}/`}>
               <img src={post.data.heroImage} alt="" />
               <div class="absolute inset-0 bg-gradient-to-b from-black/80" />
               <div class="absolute top-0 w-full text-white p-2">
                 <h3 class="text-xl font-bold text-shadow">{post.data.title}</h3>
                 <p class="text-base leading-6 text-shadow">
-                  {post.data.description}
+                  {post.data.lastUpdateDate}
                 </p>
               </div>
             </a>

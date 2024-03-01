@@ -3,28 +3,46 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const { title, description } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+  showTitle?: boolean;
+}
+const { title, description, showTitle = true } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
-    <script>
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
+    <!-- <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "light") {
         document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
       }
-    </script>
+      window.localStorage.setItem("theme", theme);
+    </script> -->
   </head>
 
-  <body class="flex flex-col gap-6 bg-slate-100 dark:bg-slate-800">
+  <body
+    class="flex flex-col gap-6 bg-slate-100 dark:bg-slate-900 text-black dark:text-white"
+  >
     <Header />
-    <main class="max-w-[60rem] m-auto px-3">
+    <main class="flex flex-col gap-4 max-w-[50rem] w-full m-auto px-6">
+      {showTitle && <h1 class="font-bold text-3xl">{title}</h1>}
       <slot />
     </main>
     <Footer />
