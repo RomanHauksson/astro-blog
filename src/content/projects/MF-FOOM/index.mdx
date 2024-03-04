@@ -1,0 +1,222 @@
+---
+title: "MF FOOM"
+projectDate: "2023-07-01"
+pubDate: ""
+lastUpdateDate: ""
+description: "fine-tuning GPT-3 on the lyrics of MF DOOM songs to write lyrics in his style"
+heroImage: "/mf-foom.webp"
+---
+
+I wanted to recreate [MF DOOM](https://en.wikipedia.org/wiki/MF_Doom)\'s prose not only because he\'s my favorite artist but also because it\'s famously dense with rhyme, wordplay, and pop culture references. ChatGPT can already generate lyrics as "complex" as [Lil Pump](https://en.wikipedia.org/wiki/Lil_Pump)'s using [zero-shot prompting](https://www.promptingguide.ai/techniques/zeroshot), but is it possible to use more sophisticated methods to coax a language model into generating lyrics of MF DOOM\'s caliber?
+
+## demo
+
+Unfortunately, even with fine-tuning, MF FOOM doesn't quite match DOOM\'s wordsmithery.
+
+Example input prompt:
+
+> A song titled \"Metal Mask\" about the story of how MF DOOM obtained his iconic metal mask and the power it gives him in the rap game.
+
+Final output song:
+
+<audio controls>
+    <source src="https://user-images.githubusercontent.com/62364808/232918506-4b40215b-728b-4879-9631-8c5107e28855.mp4" type="video/mp4" />
+</audio>
+
+Lyrics:
+
+> Metal mask give him bad brains, pain man can\'t explain\
+> Got locked up like a zoo monkey, then poof! Freedom\
+> Got loose, left the cell, started rockin fools clean\
+> Like a hill of beans, beans, no pan dulce\
+> The rap game is like the seventh seal, it\'s so real\
+> He hide behind a mask like a child, it\'s cold steel\
+> No regrets, he do what he gotta and he peep this\
+> I hold this, zap! Straight out the box, no joke\
+> Deadly as a runaway stampede or lightning bolt in Summertime\
+> Big as a Bumblebee sting and quicker to bring strife\
+> Through the big speakers, sound bombs, ignite drama\
+> On my A-game, I be straight sniper, through your eye like Grey\'s Anatomy\
+> White chick that be in the show with all them doctors\
+> Know what I\'m saying? The name control the ball like gridiron\
+> Speech, diction, syntax is triple A rated\
+> And it\'s not how he talk it, who he talk to\
+> To all y\'all that hate, keep your mouth closed\
+> (DOOM!) Watch the mask and you\'ll see\
+> And say your prayers, like \"Boom! He\'s back!\"\
+> You won\'t see me, I disappear like Dr. Jekyll and Mr. Hyde\
+> Boogie blow, snatch the dough then split like Houdini\
+> Like a palm tree in Africa, can\'t stand still\
+> With the metal mask, give him mad-r\'dic skills\
+> Like Kung Fu, uncanny too and always get it poppin\'\
+> Always gone, always goon, on the road that\'s how it seem\
+> Seriously, he be writing on the tour like Forrest Gump\
+> Went to dinner with the \'mentor\', it was crazy dude\
+> He gave him advice, he told him what life was about\
+> We got beef with Jim Crow and don\'t forget\
+> The name is DOOM, the mask gives him powers
+
+Compare that to the first few lines of [DOOM\'s *All Caps*](https://genius.com/Madvillain-all-caps-lyrics):
+
+> So nasty that it\'s probably somewhat of a travesty having me\
+> Daily told the people \"You can call me Your Majesty!\"\
+> Keep your battery charged\
+> You know it won\'t stick, yo\
+> And it\'s not his fault you kick slow\
+> Should\'ve let your trick \'ho chick hold your sick glow\
+> Plus nobody couldn\'t do nothin\' once he let the brick go
+
+## technical process
+
+### grabbing DOOM's lyrics
+
+I started by downloading the lyrics of every DOOM song from [Genius](https://genius.com/) (a website where users transcribe and annotate song lyrics) using the [LyricsGenius](https://lyricsgenius.readthedocs.io/en/master/) Python library.
+
+```python
+from lyricsgenius import Genius
+import os
+import re
+
+token = os.getenv("GENIUS_API_KEY")
+genius = Genius(token)
+
+# If the song title contains any of these words, it will be excluded from the
+# results.
+genius.excluded_terms = ["remix", "mix", "live", "instrumental"]
+
+artist = genius.search_artist("MF DOOM")
+
+# Clean up the lyrics.
+songs = {}
+for song in artist.songs:
+    songLyrics = re.sub(r'^\d* Contributors?.* Lyrics', '', song.lyrics)
+    songLyrics = re.sub(r'You might also like', '', songLyrics)
+    songLyrics = re.sub(r'\d*Embed', '', songLyrics)
+    songs[song.title] = songLyrics
+
+songs
+```
+
+```terminal
+Searching for songs by MF DOOM...
+
+Song 1: "Doomsday"
+Song 2: "Beef Rapp"
+Song 3: "Rapp Snitch Knishes"
+Song 4: "One Beer"
+...
+
+Done.
+```
+
+```json
+{'Doomsday': '[Intro: Pebbles the Invisible Girl, MF DOOM]\nMic Check\nWhen I was...
+    'Beef Rapp': '[Produced by Metal Fingers]\n\n[Skit 1]\nNow I haven\'t eaten a...
+    'Rapp Snitch Knishes': '[Intro: Mr. Fantastik & MF DOOM]\nYo! Yo!\nMF DOOM, M...
+    'One Beer': '[Intro]\nI get no kick from champagne\nMere alcohol doesn\'t thr...
+```
+
+### fine-tuning GPT-3
+
+I used the ChatGPT API to generate one-sentence summaries of each song. These are used to create a list of prompt--completion pairs for fine-tuning a different model, using [OpenAI's recommendations](https:\/\/platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset) for formatting best practices:
+
+``` json
+{
+    "prompt": "<song summary>\n\n###\n\n",
+    "completion": " <song lyrics>\nEND OF SONG"
+}
+```
+
+```python
+import openai
+import jsonlines
+openai.organization = os.getenv("OPENAI_ORG")
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+prompts = []
+
+for title, lyrics in songs.items():
+    if lyrics == "" or lyrics == None:
+        continue
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+                {"role": "system", "content": "You are a helpful assistant who is an expert on pop culture, and specifically the history of hip hop."},
+                {"role": "user", "content": 'Please give a one-sentence summary of the following song. Your response should follow this format: "A song about <description>.". Here are the lyrics:\n\n"""\n' + lyrics + '"""'},
+            ]
+        )
+    description = response['choices'][0]['message']['content']
+    description = re.sub(r'^A song about ', '', description)
+    description = f'A song titled "{title}" about {description}'
+    prompts.append({
+        "prompt": description + "\n\n###\n\n",
+        "completion": " " + lyrics + "\nEND OF SONG"
+    })
+
+# Write the prompt-completion pairs to a JSON Lines file.
+with jsonlines.open('prompts.jsonl', mode='w') as writer:
+    writer.write_all(prompts)
+
+prompts[0]
+```
+
+```json
+{'prompt': 'A song titled "Doomsday" about the power and impact of an MC, their unique and influential voice in the world of hip hop.\n\n###\n\n',
+'completion': ' [Intro: Pebbles the Invisible Girl, MF DOOM]\nMic Check\nWhen I was led to you\nI knew you were the one for me... \nEND OF SONG'}
+```
+
+I then fine-tuned a GPT-3 DaVinci model using the song lyrics and
+summaries. I had to wait in line to fine-tune my mode for hours, even
+though the fine-tuning process itself took just five minutes.
+
+``` python
+!openai api fine_tunes.create -t prompts.jsonl -m davinci
+```
+
+### making him sing
+
+After the model was finished fine-tuning, MF FOOM had a pen! I put him to work with his first song, *Metal Mask*.
+
+``` python
+def songDescriptionToLyrics(description):
+    prompt = description + "\n\n###\n\n"
+
+    # Retrieve the ID of the latest fine-tuned model you've created.
+    model = dict(openai.FineTune.list())['data'][-1]["fine_tuned_model"]
+    if model == None:
+        raise Exception("The fine-tuning job probably hasn't finished yet.")
+    
+    completion = openai.Completion.create(
+        model=model,
+        prompt=prompt,
+        max_tokens=1300,
+        temperature=0.9,
+        presence_penalty=0.46,
+        stop="END OF SONG"
+    )
+    return completion['choices'][0]['text']
+
+print(songDescriptionToLyrics('A song titled "Metal Mask" about the story of how MF DOOM obtained his iconic metal mask and the power it gives him in the rap game.'))
+```
+
+```terminal
+Metal mask give him bad brains, pain man can\'t explain
+Got locked up like a zoo monkey, then poof! Freedom
+Got loose, left the cell, started rockin fools clean
+Like a hill of beans, beans, no pan dulce
+The rap game is like the seventh seal, it\'s so real
+...
+```
+
+I then used [ElevenLabs](https://beta.elevenlabs.io/) to give him a voice. This a service which enables you to generate incredibly realistic text-to-voice audio clips, and one of its features is the ability to clone someone\'s voice from an existing audio clip and get the resulting voice engine to read out loud any new text you want.
+
+I cloned DOOM\'s voice from [the acapella version of *Gazzillion Ear*](https://www.youtube.com/watch?v=LoXJd4Hkbcg), then generated the vocals for *Metal Mask* using the clone with a \"stability\" value of 86% and a \"similarity\" value of 100%. Finally, I used GarageBand to overlay the vocals onto [the instrumental of *Gazzillion Ear*](https://www.youtube.com/watch?v=sQ7aKsYxwaM).
+
+<audio controls>
+    <source src="https://user-images.githubusercontent.com/62364808/232918506-4b40215b-728b-4879-9631-8c5107e28855.mp4" type="video/mp4" />
+</audio>
+
+He doesn\'t sound *exactly* like DOOM, and his flow is off-beat, even after I played around with [quantization](https://en.wikipedia.org/wiki/Quantization_(music)). Oh well. He\'s still a better rapper than [me](https://soundcloud.com/roman-hauksson-neill).
+
+*The lyrics I generated and the final song Metal Mask are a
+non-commercial parody.*
