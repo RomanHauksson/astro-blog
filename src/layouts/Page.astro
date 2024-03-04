@@ -7,13 +7,14 @@ interface Props {
   title: string;
   description: string;
   showTitle?: boolean;
+  image?: string;
 }
-const { title, description, showTitle = true } = Astro.props;
+const { title, description, showTitle = true, image = "" } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} image={image} />
     <!-- <script is:inline>
       const theme = (() => {
         if (

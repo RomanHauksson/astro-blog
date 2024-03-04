@@ -16,7 +16,7 @@ const posts = (await getCollection("projects")).sort(
         posts.map((post) => (
           <li class="grow-0 shrink basis-60 relative h-auto rounded-xl overflow-hidden hover:rotate-3 active:rotate-0 active:scale-90 duration-75 shadow-lg">
             <a href={`/projects/${post.slug}/`}>
-              <img src={post.data.heroImage} alt="" />
+              <img src={post.data.heroImage} alt="" loading="eager" />
               <div class="absolute inset-0 bg-gradient-to-b from-black/80" />
               <div class="absolute top-0 w-full text-white p-2">
                 <h3 class="text-xl font-bold text-shadow">{post.data.title}</h3>
