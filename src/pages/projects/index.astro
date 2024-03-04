@@ -11,10 +11,6 @@ const posts = (await getCollection("projects")).sort(
 
 <Page title={"projects"} description={"Roman Hauksson's projects."}>
   <section class="flex flex-col gap-4">
-    <p>
-      Note: i'm still in the process of refactoring my website from Hugo to
-      Astro. More projects will be added soon ;).
-    </p>
     <ul class="flex flex-wrap justify-center gap-4 w-full">
       {
         posts.map((post) => (
@@ -25,7 +21,7 @@ const posts = (await getCollection("projects")).sort(
               <div class="absolute top-0 w-full text-white p-2">
                 <h3 class="text-xl font-bold text-shadow">{post.data.title}</h3>
                 <p class="text-base leading-6 text-shadow">
-                  {post.data.lastUpdateDate}
+                  {post.data.description}
                 </p>
               </div>
             </a>

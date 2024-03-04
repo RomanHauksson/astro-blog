@@ -1,0 +1,20 @@
+---
+import { ImageMetadata } from "astro";
+
+interface Props {
+  image: ImageMetadata;
+  caption?: string;
+}
+
+const { image, caption = "" } = Astro.props;
+---
+
+<figure class="self-center">
+  <img
+    src={image.src}
+    alt=""
+    class="max-h-96 w-auto rounded-lg m-auto"
+    loading="lazy"
+  />
+  <figcaption>{caption}</figcaption>
+</figure>

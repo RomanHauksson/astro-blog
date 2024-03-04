@@ -1,14 +1,19 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Page from "../layouts/Page.astro";
-import headshot from "./headshot.webp";
 import { Image } from "astro:assets";
 ---
 
 <Page title={SITE_TITLE} description={SITE_DESCRIPTION} showTitle={false}>
   <section>
     <div class="flex flex-row gap-6 items-center">
-      <Image src={headshot} alt="" class="w-48 rounded-full" />
+      <Image
+        src="/headshot"
+        alt=""
+        class="rounded-full"
+        width="200"
+        height="200"
+      />
       <div class="flex flex-col">
         <h1 class="font-bold text-3xl">Hi, my name's Roman.</h1>
         <p>I'm trying to help make society's future go well.</p>
