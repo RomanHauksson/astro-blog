@@ -21,20 +21,3 @@ pnpm-debug.log*
 .DS_Store
 
 .vscode/
-
-# GIMP files
-*.xfc
-
-# non-webp or -webm files (cringe)
-*.png
-*.jpg
-*.mp4
-src/content/projects/LEBRON/team.xcf
-src/content/projects/color-coded-hexaflexagon/diagram_inkscape.svg
-src/content/projects/color-coded-hexaflexagon/diagram.webp
-src/content/projects/color-coded-hexaflexagon/hexaflexagon.xcf
-src/content/projects/color-coded-hexaflexagon/prototypes.xcf
-src/content/projects/color-coded-hexaflexagon/template-letter.svg
-src/content/projects/color-coded-hexaflexagon/Hexaflexagons [VIVIegSt81k].webm
-src/content/projects/color-coded-hexaflexagon/Hexaflexagons 2 [paQ10POrZh8].webm
-src/content/projects/color-coded-hexaflexagon/How To Make a Hexaflexagon： The Definitive Guide [Svq2Kscmmwc].webm
