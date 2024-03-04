@@ -11,6 +11,7 @@ const posts = (await getCollection("projects")).sort(
 
 <Page title={"projects"} description={"Roman Hauksson's projects."}>
   <section class="flex flex-col gap-4">
+    <p>Note: I'm still in the process of making writeups of past projects.</p>
     <ul class="flex flex-wrap justify-center gap-4 w-full">
       {
         posts.map((post) => (
