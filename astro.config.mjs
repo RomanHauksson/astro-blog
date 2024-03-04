@@ -5,8 +5,10 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import preact from "@astrojs/preact";
 
+import partytown from "@astrojs/partytown";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
-  integrations: [mdx(), sitemap(), tailwind(), icon(), preact()]
+  integrations: [mdx(), sitemap(), tailwind(), icon(), preact(), partytown()]
 });

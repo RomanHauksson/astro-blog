@@ -7,9 +7,11 @@ type Props = CollectionEntry<"projects">["data"];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<Page title={title} description={description}>
-  <script type="module" src="https://js.withorbit.com/orbit-web-component.js"
-  ></script>
+<Page title={title} description={description} image={heroImage}>
+  <script
+    type="module"
+    type="text/partytown"
+    src="https://js.withorbit.com/orbit-web-component.js"></script>
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
@@ -17,6 +19,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     crossorigin="anonymous"
   />
   <script
+    type="text/partytown"
     defer
     src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
     integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
