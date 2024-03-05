@@ -24,7 +24,12 @@ if (!images[imagePath])
   class="grow-0 shrink basis-60 relative h-auto rounded-xl overflow-hidden hover:rotate-3 active:rotate-0 active:scale-90 duration-75 shadow-lg"
 >
   <a href={`/projects/${slug}/`}>
-    <Image src={images[imagePath]()} alt={altText} loading="eager" />
+    <Image
+      src={images[imagePath]()}
+      alt={altText}
+      quality="mid"
+      loading="eager"
+    />
     <div class="absolute inset-0 bg-gradient-to-b from-black/80"></div>
     <div class="absolute top-0 w-full text-white p-2">
       <h3 class="text-xl font-bold text-shadow">{title}</h3>
