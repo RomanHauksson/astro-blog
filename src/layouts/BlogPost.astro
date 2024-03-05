@@ -3,8 +3,16 @@ import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import Page from "../layouts/Page.astro";
 type Props = CollectionEntry<"projects">["data"];
+import { Image } from "astro:assets";
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpg,png,webp}"
+);
+if (!images[heroImage])
+  throw new Error(
+    `"${heroImage}" does not exist in glob: "/src/assets/*.{jpg,png,webp}"`
+  );
 ---
 
 <Page title={title} description={description} image={heroImage}>
@@ -27,7 +35,18 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
   <article>
     <div class="hero-image rounded-lg overflow-hidden">
-      {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+      {
+        heroImage && (
+          <Image
+            width={1020}
+            height={510}
+            src={images[heroImage]()}
+            quality="max"
+            loading="eager"
+            alt=""
+          />
+        )
+      }
     </div>
     <div class="prose prose-slate prose-invert">
       <div class="title">
