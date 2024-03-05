@@ -1,0 +1,30 @@
+---
+title: 'demo for "I"'
+description: 'simulated trading platform for securitized income share agreements'
+pubDate: '2024 Mar 5'
+lastUpdateDate: '2024 Mar 5'
+heroImage: '/i-demo/screenshot.webp'
+---
+
+I was involved in a startup called "I" that aimed to enable people to sell a percentage of their future income as shares to investors by securitizing [income share agreements](https://en.wikipedia.org/wiki/Income_share_agreement). Learn more about the idea [here](https://iatskar.notion.site/I-870faf6130c4483c8c615f7214ccf75d).
+
+The startup didn't end up going anywhere, but while we were working on it, I made a demo to visualize what the platform might have looked like. It allows you to browse people's profiles and submit buy or sell orders, and if a matching order is found, it executes the trade using a [continuous double auction](https://en.wikipedia.org/wiki/Double_auction). View the source code on [GitHub](https://github.com/romanhauksson/i).
+
+import Video from "../../../components/Video.astro"
+import demo from "./demo.webm"
+
+<Video src={demo}/>
+
+## tech stack
+
+| technology | purpose |
+| --- | --- |
+| [Typescript](http://typescriptlang.org/) | scripting language |
+| [Next.js](https://nextjs.org/) | frontend framework |
+| [Tailwind CSS](https://tailwindcss.com/) | styling |
+| [Tremor](https://www.tremor.so/) | React component library | 
+| [Supabase](https://supabase.com/) | backend and authentication |
+| [Vercel](https://vercel.com/) | frontend deployment |
+| [GitHub](https://github.com/) | repository hosting |
+| [pnpm](https://pnpm.io/) | package management |
+| [Figma](https://figma.com/) | design |
