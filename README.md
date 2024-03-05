@@ -4,12 +4,12 @@ This is the repository for my blog and personal website. It was initialized usin
 
 ## tech stack
 
-| technology | purpose |
-| :--- | :--- |
-| [Astro](https://astro.build/) | static site generator / web framework |
-| [Tailwind CSS](https://tailwindcss.com/) | styling |
-| [MDX](https://mdxjs.com/) | writing documents |
-| [Vercel](https://vercel.com/) | deployment |
+| technology                               | purpose                               |
+| :--------------------------------------- | :------------------------------------ |
+| [Astro](https://astro.build/)            | static site generator / web framework |
+| [Tailwind CSS](https://tailwindcss.com/) | styling                               |
+| [MDX](https://mdxjs.com/)                | writing documents                     |
+| [Vercel](https://vercel.com/)            | deployment                            |
 
 ## installation
 
