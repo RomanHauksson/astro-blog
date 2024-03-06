@@ -9,6 +9,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 import { ViewTransitions } from "astro:transitions";
+import PostHog from "./PostHog.astro";
 ---
 
 <!-- Global Metadata -->
@@ -35,6 +36,7 @@ import { ViewTransitions } from "astro:transitions";
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+<PostHog />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
