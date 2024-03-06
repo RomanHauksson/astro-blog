@@ -9,7 +9,8 @@ This is the repository for my blog and personal website. It was initialized usin
 | [Astro](https://astro.build/)            | static site generator / web framework |
 | [Tailwind CSS](https://tailwindcss.com/) | styling                               |
 | [MDX](https://mdxjs.com/)                | writing documents                     |
-| [Vercel](https://vercel.com/)            | deployment                            |
+| [Vercel](https://vercel.com/)            | frontend hosting                            |
+| [Vimeo](https://vimeo.com/) | video hosting |
 
 ## installation
 
