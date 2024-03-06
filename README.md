@@ -1,6 +1,6 @@
 # my blog
 
-This is the repository for my blog and personal website. It was initialized using [Astro's official blog template](https://astro.build/themes/details/blog/), but i wrote all of the components from scratch, except a couple. You can visit it at [roman.computer](https://roman.computer) or [roman.technology](https://roman.technology).
+This is the repository for my blog and personal website. It was initialized using [Astro's official blog template](https://astro.build/themes/details/blog/), but I wrote all of the components from scratch, except a couple. You can visit it at [roman.computer](https://roman.computer) or [roman.technology](https://roman.technology).
 
 ## tech stack
 
@@ -11,6 +11,7 @@ This is the repository for my blog and personal website. It was initialized usin
 | [MDX](https://mdxjs.com/)                | writing documents                     |
 | [Vercel](https://vercel.com/)            | frontend hosting                            |
 | [Vimeo](https://vimeo.com/) | video hosting |
+| [PostHog](https://posthog.com/) | analytics |
 
 ## installation
 
