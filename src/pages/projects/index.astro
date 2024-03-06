@@ -4,23 +4,42 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import PostCard from "../../components/PostCard.astro";
 
-const posts = (await getCollection("projects")).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
+const publishedPosts = await getCollection("projects", ({ data }) => {
+  return data.draft !== true;
+});
+const unpublishedPosts = await getCollection("projects", ({ data }) => {
+  return data.draft == true;
+});
 ---
 
 <Page title={"projects"} description={"Roman Hauksson's projects."}>
   <section class="flex flex-col gap-4">
-    <p>Note: I'm still in the process of making writeups of past projects.</p>
     <ul class="flex flex-wrap justify-center gap-4 w-full">
       {
-        posts.map((post) => (
+        publishedPosts.map((post) => (
           <PostCard
             imagePath={post.data.heroImage}
             description={post.data.description}
             title={post.data.title}
             slug={post.slug}
             altText=""
+          />
+        ))
+      }
+    </ul>
+  </section>
+  <section>
+    <h3 class="font-bold text-xl">unpublished (coming soon!)</h3>
+    <ul class="flex flex-wrap justify-center gap-4 w-full">
+      {
+        unpublishedPosts.map((post) => (
+          <PostCard
+            imagePath={post.data.heroImage}
+            description={post.data.description}
+            title={post.data.title}
+            slug={post.slug}
+            altText=""
+            published={false}
           />
         ))
       }
