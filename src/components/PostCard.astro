@@ -30,6 +30,7 @@ if (!images[imagePath])
 
 <li
   class={`grow-0 shrink basis-60 relative h-auto rounded-xl overflow-hidden shadow-lg ${published ? "hover:rotate-3 active:rotate-0 active:scale-90 duration-75" : ""}`}
+  transition:name={imagePath}
 >
   <a {...published ? { href: `/projects/${slug}/` } : {}}>
     <Image
@@ -45,6 +46,7 @@ if (!images[imagePath])
     <div class="absolute top-0 w-full text-white p-2">
       <h3
         class={`text-xl font-bold text-shadow ${published ? "" : "text-gray-400"}`}
+        transition:name={title}
       >
         {title}
       </h3>

@@ -34,7 +34,10 @@ if (!images[heroImage])
     crossorigin="anonymous"></script>
 
   <article>
-    <div class="hero-image rounded-lg overflow-hidden">
+    <div
+      class="hero-image rounded-lg overflow-hidden"
+      transition:name={heroImage}
+    >
       {
         heroImage && (
           <Image
