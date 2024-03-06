@@ -1,8 +1,8 @@
 ---
 import Page from "../../layouts/Page.astro";
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
 import FormattedDate from "../../components/FormattedDate.astro";
+import PostCard from "../../components/PostCard.astro";
 
 const posts = (await getCollection("projects")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -15,18 +15,13 @@ const posts = (await getCollection("projects")).sort(
     <ul class="flex flex-wrap justify-center gap-4 w-full">
       {
         posts.map((post) => (
-          <li class="grow-0 shrink basis-60 relative h-auto rounded-xl overflow-hidden hover:rotate-3 active:rotate-0 active:scale-90 duration-75 shadow-lg">
-            <a href={`/projects/${post.slug}/`}>
-              <img src={post.data.heroImage} alt="" loading="eager" />
-              <div class="absolute inset-0 bg-gradient-to-b from-black/80" />
-              <div class="absolute top-0 w-full text-white p-2">
-                <h3 class="text-xl font-bold text-shadow">{post.data.title}</h3>
-                <p class="text-base leading-6 text-shadow">
-                  {post.data.description}
-                </p>
-              </div>
-            </a>
-          </li>
+          <PostCard
+            imagePath={post.data.heroImage}
+            description={post.data.description}
+            title={post.data.title}
+            slug={post.slug}
+            altText=""
+          />
         ))
       }
     </ul>
