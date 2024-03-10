@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Splat, OrbitControls } from "@react-three/drei";
 import { useRef } from "react";
 import { Icon } from '@iconify/react';
+// import splat from "../assets/Roman.splat"
 
 const Roman = () => {
   return (
@@ -10,7 +11,7 @@ const Roman = () => {
       <Canvas camera={{ position: [-1.7, 0.6, 0] }}>
         <OrbitControls />
         <Splat
-          src="/Roman.splat"
+          src="https://roman.technology/Roman.splat"
           rotation={[0 * Math.PI, 0 * Math.PI, 0 * Math.PI]}
         />
       </Canvas>
