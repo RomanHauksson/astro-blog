@@ -17,9 +17,7 @@ const { title, description, showTitle = true, image = "" } = Astro.props;
     <BaseHead title={title} description={description} image={image} />
   </head>
 
-  <body
-    class="flex flex-col gap-6 bg-slate-100 dark:bg-slate-900 text-black dark:text-white"
-  >
+  <body class="flex flex-col gap-6 bg-slate-900 text-white">
     <Header />
     <main class="flex flex-col gap-4 max-w-[50rem] w-full m-auto px-6">
       {
