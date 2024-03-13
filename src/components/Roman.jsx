@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 import { useState, useEffect } from 'react';
 
 const Roman = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
 
   useEffect(() => {
     const handleMouseMove = (event) => {
