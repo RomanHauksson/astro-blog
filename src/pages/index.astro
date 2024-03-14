@@ -1,22 +1,13 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Page from "../layouts/Page.astro";
-import { Image } from "astro:assets";
 import Roman from "../components/Roman";
 ---
 
 <Page title={SITE_TITLE} description={SITE_DESCRIPTION} showTitle={false}>
   <section class="flex flex-col gap-6 items-center">
-    <!-- <Image
-        src="/headshot.webp"
-        alt=""
-        class="rounded-full"
-        width="200"
-        height="200"
-        loading="eager"
-      /> -->
     <h1 class="font-bold text-3xl">Hi, my name's Roman.</h1>
     <p>I'm trying to help make society's future go well.</p>
-    <Roman client:only="react" />
+    <Roman client:load />
   </section>
 </Page>
