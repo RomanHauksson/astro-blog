@@ -19,10 +19,10 @@ const { title, description, showTitle = true, image = "" } = Astro.props;
 
   <body class="flex flex-col gap-6 bg-slate-900 text-white">
     <Header />
-    <main class="flex flex-col gap-4 max-w-[50rem] w-full m-auto px-6">
+    <main class="flex flex-col gap-6 max-w-[50rem] w-full m-auto px-6">
       {
         showTitle && (
-          <h1 class="font-bold text-3xl" transition:name={title}>
+          <h1 class="font-bold text-5xl" transition:name={title}>
             {title}
           </h1>
         )

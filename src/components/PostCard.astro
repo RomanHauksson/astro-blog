@@ -29,7 +29,7 @@ if (!images[imagePath])
 ---
 
 <li
-  class={`grow-0 shrink basis-60 relative h-auto rounded-xl overflow-hidden shadow-lg ${published ? "hover:rotate-3 active:rotate-0 active:scale-90 duration-75" : ""}`}
+  class={`grow shrink basis-60 relative h-auto rounded-xl overflow-hidden shadow-lg ${published ? "hover:rotate-3 active:rotate-0 active:scale-90 duration-75" : ""}`}
   transition:name={imagePath}
 >
   <a {...published ? { href: `/projects/${slug}/` } : {}}>
@@ -38,6 +38,7 @@ if (!images[imagePath])
       alt={altText}
       quality="mid"
       loading="eager"
+      class="rounded-xl border border-slate-800"
     />
     <div
       class={`absolute inset-0 bg-gradient-to-b from-black/80 ${published ? "" : "to-black/40"}`}

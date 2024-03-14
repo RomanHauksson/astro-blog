@@ -13,7 +13,7 @@ const unpublishedPosts = await getCollection("projects", ({ data }) => {
 ---
 
 <Page title={"projects"} description={"Roman Hauksson's projects."}>
-  <section class="flex flex-col gap-4">
+  <section class="flex flex-col gap-6">
     <ul class="flex flex-wrap justify-center gap-4 w-full">
       {
         publishedPosts.map((post) => (
@@ -29,7 +29,7 @@ const unpublishedPosts = await getCollection("projects", ({ data }) => {
     </ul>
   </section>
   <section>
-    <h3 class="font-bold text-xl">unpublished (coming soon!)</h3>
+    <h3 class="font-bold text-3xl mb-4 mt-4">unpublished (coming soon!)</h3>
     <ul class="flex flex-wrap justify-center gap-4 w-full">
       {
         unpublishedPosts.map((post) => (
@@ -41,6 +41,11 @@ const unpublishedPosts = await getCollection("projects", ({ data }) => {
             altText=""
             published={false}
           />
+        ))
+      }
+      {
+        Array.from({ length: 2 }).map(() => (
+          <li class="grow shrink basis-60 -mt-4 h-0" />
         ))
       }
     </ul>
