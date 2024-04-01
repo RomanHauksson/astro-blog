@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon/components";
+import type { ResumeEntryData } from "../types";
+interface Props {
+  data: ResumeEntryData;
+}
+const {
+  name,
+  link = null,
+  startMonth = null,
+  endMonth = null,
+  location = null,
+  description = null,
+  technologies = null,
+} = Astro.props.data;
+---
+
+<li class="rounded-xl bg-slate-800 p-2 px-3 shadow">
+  <h3 class="font-medium text-xl">
+    {
+      link ? (
+        <a class="text-indigo-300 hover:text-indigo-100" href={link}>
+          {name}
+          <Icon class="inline-block" name="line-md:external-link" />
+        </a>
+      ) : (
+        name
+      )
+    }
+    {location && " (" + location + ")"}
+  </h3>
+
+  {
+    startMonth && (
+      <p class="italic">
+        {startMonth} {endMonth && " – " + endMonth}
+      </p>
+    )
+  }
+  {
+    description && (
+      <ul class="list-disc pl-4">
+        {description.map((item, index) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    )
+  }
+</li>

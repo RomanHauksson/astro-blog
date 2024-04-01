@@ -1,9 +1,190 @@
 ---
 import Page from "../layouts/Page.astro";
+import ResumeSection from "../components/ResumeSection.astro";
+import type { ResumeSectionData } from "../types";
+import ResumeIcon from "../components/ResumeIcon.astro";
+import ResumeQuote from "../components/ResumeQuote.astro";
+
+const resumeSections: ResumeSectionData[] = [
+  {
+    name: "Education",
+    entries: [
+      {
+        name: "University of Texas at Dallas",
+        description: ["B.S. in Computer Science, National Merit Scholar"],
+        startMonth: "Aug 2021",
+        endMonth: "Dec 2025 (Expected)",
+      },
+    ],
+  },
+  {
+    name: "Work Experience",
+    entries: [
+      {
+        name: "Capital One: Software Engineering Intern",
+        location: "McLean, Virginia",
+        startMonth: "Jun 2023",
+        endMonth: "Aug 2023",
+        description: [
+          "Created front end for Chrome extension using React.js. Refactored build tool to increase preview speed by 300%.",
+          "Completed 4-week curriculum on full-stack technologies including Go, React, and Linux.",
+        ],
+      },
+      {
+        name: "Joint Special Operations Command: Software Engineering Intern",
+        location: "Virtual",
+        startMonth: "Jun 2022",
+        endMonth: "Aug 2022",
+        description: [
+          "Created Python interface for internal Node API with automatically generated documentation.",
+        ],
+      },
+    ],
+  },
+  {
+    name: "Projects",
+    entries: [
+      {
+        name: 'Demo for "I"',
+        link: "https://roman.technology/projects/i-demo/",
+        description: [
+          "Designed and created full-stack demo for a friend's startup, a trading platform for securitized income share agreements.",
+        ],
+        technologies: ["Figma", "Next", "Vercel", "Supabase", "Tailwind"],
+      },
+      {
+        name: "MF FOOM",
+        link: "http://roman.technology/projects/mf-foom/",
+        description: [
+          "Fine-tuned GPT-3 on the lyrics of 96 MF DOOM songs to write lyrics in his style, then cloned his voice to edit those lyrics into a song.",
+        ],
+        technologies: ["Python", "GPT-3", "ElevenLabs"],
+      },
+      {
+        name: "Just Arrived – HackUTD VIII",
+        link: "https://devpost.com/software/fresh-off-the-plane",
+        description: [
+          "Designed and coded front end for an app to help international students; won Nebula API Challenge.",
+        ],
+        technologies: ["Flutter"],
+      },
+      {
+        name: "Manifold Markets Depth Chart Feature",
+        link: "https://manifold.markets",
+        description: [
+          "Created React component to visualize the market depth of prediction markets.",
+          "Won 3rd place in Manifold Markets Hackathon and pushed it to production on a site with 800+ daily active users.",
+        ],
+        technologies: ["React", "Typescript"],
+      },
+    ],
+  },
+  {
+    name: "Research",
+    entries: [
+      {
+        name: "ACM UTD Research Program: Director",
+        link: "https://acmutd.co/research",
+        startMonth: "May 2022",
+        endMonth: "Dec 2022",
+        description: [
+          "Directed a semester-long program with a ≈15% admission rate to help undergraduates try out CS research.",
+          "Managed 4 teams of 6 students each and hosted the research presentation event for 50+ attendees.",
+        ],
+      },
+      {
+        name: "ACM UTD Research Program: Team Lead",
+        link: "https://github.com/ACM-Research/targeted-password-guesses",
+        startMonth: "Dec 2021",
+        endMonth: "Apr 2022",
+        description: [
+          "Fine-tuned GPT-3 on user data to explore the use of language models to generate targeted password guesses.",
+          "Achieved >3 times higher accuracy than baseline, won the research presentation contest versus 5 other teams, and amassed 61 stars on GitHub.",
+        ],
+      },
+      {
+        name: "ACM UTD Research Program: Participant",
+        link: "https://github.com/ACM-Research/language-trends-mobile-keyboard",
+        startMonth: "Sep 2021",
+        endMonth: "Nov 2021",
+        description: [
+          "Trained an LSTM model on Tweets from different subgroups on Twitter, using Tensorflow, with a team of 4.",
+          "Won the research presentation contest versus 5 other teams.",
+        ],
+      },
+    ],
+  },
+  {
+    name: "Experiences",
+    entries: [
+      {
+        name: "Program on AI and Reasoning",
+        location: "Cambridge, UK",
+        startMonth: "Aug 2023",
+        description: [
+          "Learned about AI and cognition at a 10-day camp for mathematically talented students (2.5% acceptance rate).",
+        ],
+      },
+      {
+        name: "We'll Pwn You With Your Wattpad Profile",
+        location: "New York, New York",
+        startMonth: "Jul 2022",
+        description: [
+          "Delivered talk on password cracking at the Hackers on Planet Earth conference to an audience of 20+ hackers.",
+        ],
+      },
+      {
+        name: "TexSAW 2022 Capture The Flag Winner",
+        location: "Dallas, Texas",
+        startMonth: "Apr 2022",
+        description: [
+          "Won a cybersecurity CTF competition with a partner against 10+ teams.",
+        ],
+      },
+    ],
+  },
+];
 ---
 
 <Page title={"resume"} description={"Roman Hauksson's resume."}>
   <section>
-    <object data="/resume.pdf" class="w-full aspect-[0.7]"></object>
+    <div class="flex flex-row gap-4">
+      <ResumeIcon
+        link="https://www.linkedin.com/in/romanhauksson"
+        icon="line-md:linkedin"
+      />
+      <ResumeIcon
+        link="https://github.com/romanhauksson"
+        icon="line-md:github"
+      />
+      <ResumeIcon link="/resume.pdf" icon="line-md:download-outline" />
+    </div>
+  </section>
+
+  <!-- <section> -->
+  <!-- <ResumeQuote
+      quote="I also just have to say, your code is very exemplary in its organization
+    and> overall cleanliness. And so are your commits. I have a thing or two
+    to learn from you!"
+      author="research collaborator"
+    /> -->
+  <!-- <ResumeQuote
+      quote="You were the most technically skilled member on the team."
+      author="former manager"
+    />
+    <ResumeQuote
+      quote="I really do mean it when I say you're more capable than you have a right
+    to be at your age..."
+      author="interviewer"
+    /> -->
+  <!-- <ResumeQuote /> -->
+  <!-- </section> -->
+
+  <section class="flex flex-col gap-4">
+    {
+      resumeSections.map((sectionData: ResumeSectionData) => (
+        <ResumeSection data={sectionData} />
+      ))
+    }
   </section>
 </Page>
