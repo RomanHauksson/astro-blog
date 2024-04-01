@@ -3,7 +3,8 @@ import Page from "../layouts/Page.astro";
 import ResumeSection from "../components/ResumeSection.astro";
 import type { ResumeSectionData } from "../types";
 import ResumeIcon from "../components/ResumeIcon.astro";
-// import ResumeQuote from "../components/ResumeQuote.astro";
+import ResumeQuote from "../components/ResumeQuote.astro";
+import { Icon } from "astro-icon/components";
 
 const resumeSections: ResumeSectionData[] = [
   {
@@ -161,24 +162,49 @@ const resumeSections: ResumeSectionData[] = [
     </div>
   </section>
 
-  <!-- <section> -->
-  <!-- <ResumeQuote
-      quote="I also just have to say, your code is very exemplary in its organization
-    and> overall cleanliness. And so are your commits. I have a thing or two
-    to learn from you!"
+  <section
+    class="relative text-black p-4 font-serif text-center items-center flex flex-col gap-4 p-6"
+  >
+    <div
+      class="bg-white absolute w-full h-full -z-10 rounded-lg inset-0"
+      style='filter: url("#paper");'
+    >
+    </div>
+    <svg class="hidden"
+      ><filter id="paper"
+        ><feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="1"
+        ></feTurbulence><feDisplacementMap in="SourceGraphic" scale="20"
+        ></feDisplacementMap></filter
+      ></svg
+    >
+    <div class="flex flex-row gap-4 items-center justify-center">
+      <div class="flex flex-row gap-4">
+        <Icon class="inline" name="material-symbols:star" />
+        <Icon class="inline" name="material-symbols:star" />
+        <Icon class="inline" name="material-symbols:star" />
+      </div>
+      <h2 class="text-xl font-semibold inline">
+        Praise for <i class="inline-block">Roman Hauksson</i>
+      </h2>
+      <div class="flex flex-row gap-4">
+        <Icon class="inline" name="material-symbols:star" />
+        <Icon class="inline" name="material-symbols:star" />
+        <Icon class="inline" name="material-symbols:star" />
+      </div>
+    </div>
+    <ResumeQuote
+      quote="I also just have to say, your code is very exemplary in its organization and overall cleanliness. And so are your commits. I have a thing or two to learn from you!"
       author="research collaborator"
-    /> -->
-  <!-- <ResumeQuote
-      quote="You were the most technically skilled member on the team."
+    />
+    <ResumeQuote
+      quote="You're the most technically skilled member on our team."
       author="former manager"
     />
     <ResumeQuote
-      quote="I really do mean it when I say you're more capable than you have a right
-    to be at your age..."
+      quote="I really do mean it when I say you're more capable than you have a right to be at your age..."
       author="interviewer"
-    /> -->
-  <!-- <ResumeQuote /> -->
-  <!-- </section> -->
+    />
+  </section>
 
   <section class="flex flex-col gap-4">
     {
