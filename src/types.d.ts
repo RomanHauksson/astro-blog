@@ -11,6 +11,7 @@ type ResumeEntryData = {
 type ResumeSectionData = {
   name: string;
   entries: ResumeEntryData[];
+  icon?: string;
 }
 
 export { ResumeEntryData, ResumeSectionData };

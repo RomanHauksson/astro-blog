@@ -8,7 +8,8 @@ import { Icon } from "astro-icon/components";
 
 const resumeSections: ResumeSectionData[] = [
   {
-    name: "Education",
+    name: "education",
+    icon: "material-symbols:school-outline",
     entries: [
       {
         name: "University of Texas at Dallas",
@@ -19,7 +20,8 @@ const resumeSections: ResumeSectionData[] = [
     ],
   },
   {
-    name: "Work Experience",
+    name: "work experience",
+    icon: "material-symbols:work-outline",
     entries: [
       {
         name: "Capital One: Software Engineering Intern",
@@ -36,14 +38,13 @@ const resumeSections: ResumeSectionData[] = [
         location: "Virtual",
         startMonth: "Jun 2022",
         endMonth: "Aug 2022",
-        description: [
-          "Created Python interface for internal Node API with automatically generated documentation.",
-        ],
+        description: ["Created Python interface for internal Node.js API."],
       },
     ],
   },
   {
-    name: "Projects",
+    name: "projects",
+    icon: "material-symbols:rocket-launch-outline",
     entries: [
       {
         name: 'Demo for "I"',
@@ -81,7 +82,8 @@ const resumeSections: ResumeSectionData[] = [
     ],
   },
   {
-    name: "Research",
+    name: "research",
+    icon: "material-symbols:search",
     entries: [
       {
         name: "ACM UTD Research Program: Director",
@@ -116,7 +118,8 @@ const resumeSections: ResumeSectionData[] = [
     ],
   },
   {
-    name: "Experiences",
+    name: "experiences",
+    icon: "material-symbols:explore-outline",
     entries: [
       {
         name: "Program on AI and Reasoning",
@@ -152,13 +155,10 @@ const resumeSections: ResumeSectionData[] = [
     <div class="flex flex-row gap-4">
       <ResumeIcon
         link="https://www.linkedin.com/in/romanhauksson"
-        icon="line-md:linkedin"
+        icon="mdi:linkedin"
       />
-      <ResumeIcon
-        link="https://github.com/romanhauksson"
-        icon="line-md:github"
-      />
-      <ResumeIcon link="/resume.pdf" icon="line-md:download-outline" />
+      <ResumeIcon link="https://github.com/romanhauksson" icon="mdi:github" />
+      <ResumeIcon link="/resume.pdf" icon="mdi:file-pdf-box" />
     </div>
   </section>
 
