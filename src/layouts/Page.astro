@@ -8,8 +8,15 @@ interface Props {
   description: string;
   showTitle?: boolean;
   image?: string;
+  showSidebar?: boolean;
 }
-const { title, description, showTitle = true, image = "" } = Astro.props;
+const {
+  title,
+  description,
+  showTitle = true,
+  image = "",
+  showSidebar = false,
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -20,14 +27,16 @@ const { title, description, showTitle = true, image = "" } = Astro.props;
   <body class="flex flex-col gap-6 bg-slate-900 text-white">
     <Header />
     <main class="flex flex-col gap-6 max-w-[50rem] w-full m-auto px-6">
+      {showTitle && <h1 class="font-bold text-5xl">{title}</h1>}
       {
-        showTitle && (
-          <h1 class="font-bold text-5xl" transition:name={title}>
-            {title}
-          </h1>
+        showSidebar ? (
+          <div class="flex flex-row gap-4">
+            <slot />
+          </div>
+        ) : (
+          <slot />
         )
       }
-      <slot />
     </main>
     <Footer />
   </body>

@@ -6,6 +6,10 @@ import ResumeIcon from "../components/ResumeIcon.astro";
 import ResumeQuote from "../components/ResumeQuote.astro";
 import { Icon } from "astro-icon/components";
 
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
 const resumeSections: ResumeSectionData[] = [
   {
     name: "education",
@@ -150,67 +154,110 @@ const resumeSections: ResumeSectionData[] = [
 ];
 ---
 
-<Page title={"resume"} description={"Roman Hauksson's resume."}>
-  <section>
-    <div class="flex flex-row gap-4">
-      <ResumeIcon
-        link="https://www.linkedin.com/in/romanhauksson"
-        icon="mdi:linkedin"
-      />
-      <ResumeIcon link="https://github.com/romanhauksson" icon="mdi:github" />
-      <ResumeIcon link="/resume.pdf" icon="mdi:file-pdf-box" />
-    </div>
-  </section>
+<html lang="en">
+  <head>
+    <BaseHead title="resume" description="Roman Hauksson's resume." />
+  </head>
 
-  <section
-    class="relative text-black p-4 font-serif text-center items-center flex flex-col gap-4 p-6"
-  >
-    <div
-      class="bg-white absolute w-full h-full -z-10 rounded-lg inset-0"
-      style='filter: url("#paper"); will-change: filter;'
+  <body class="flex flex-col gap-6 bg-slate-900 text-white">
+    <Header />
+    <main
+      class="grid gap-x-10 gap-y-6 grid-rows-[0fr_0fr] grid-rows-2 max-w-[55rem] w-full m-auto px-6"
     >
-    </div>
-    <svg class="hidden"
-      ><filter id="paper"
-        ><feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="1"
-        ></feTurbulence><feDisplacementMap in="SourceGraphic" scale="20"
-        ></feDisplacementMap></filter
-      ></svg
-    >
-    <div class="flex flex-row gap-4 items-center justify-center">
-      <div class="flex flex-row gap-4">
-        <Icon class="inline" name="material-symbols:star" />
-        <Icon class="inline" name="material-symbols:star" />
-        <Icon class="inline" name="material-symbols:star" />
+      <h1 class="row-start-1 col-start-2 font-bold text-5xl">resume</h1>
+      <div class="row-start-2 col-start-1">
+        <div class="sticky top-20 flex flex-col gap-2">
+          <h2
+            class="text-white/80 font-bold border-b border-b-1 border-b-white/30 pb-2"
+          >
+            contents
+          </h2>
+          {
+            resumeSections.map((sectionData: ResumeSectionData) => (
+              <a
+                class="text-white/80 hover:text-white flex flex-row items-center gap-2"
+                href={`#${sectionData.name}`}
+              >
+                <Icon name={sectionData.icon} />
+                <span>{sectionData.name}</span>
+              </a>
+            ))
+          }
+        </div>
       </div>
-      <h2 class="text-xl font-semibold inline">
-        Praise for <i class="inline-block">Roman Hauksson</i>
-      </h2>
-      <div class="flex flex-row gap-4">
-        <Icon class="inline" name="material-symbols:star" />
-        <Icon class="inline" name="material-symbols:star" />
-        <Icon class="inline" name="material-symbols:star" />
-      </div>
-    </div>
-    <ResumeQuote
-      quote="I also just have to say, your code is very exemplary in its organization and overall cleanliness. And so are your commits. I have a thing or two to learn from you!"
-      author="research collaborator"
-    />
-    <ResumeQuote
-      quote="You're the most technically skilled member on our team."
-      author="former manager"
-    />
-    <ResumeQuote
-      quote="I really do mean it when I say you're more capable than you have a right to be at your age..."
-      author="interviewer"
-    />
-  </section>
+      <div class="row-start-2 col-start-2 flex flex-col gap-6">
+        <section>
+          <div class="flex flex-row gap-4">
+            <ResumeIcon
+              link="https://www.linkedin.com/in/romanhauksson"
+              icon="mdi:linkedin"
+            />
+            <ResumeIcon
+              link="https://github.com/romanhauksson"
+              icon="mdi:github"
+            />
+            <ResumeIcon link="/resume.pdf" icon="mdi:file-pdf-box" />
+          </div>
+        </section>
 
-  <section class="flex flex-col gap-4">
-    {
-      resumeSections.map((sectionData: ResumeSectionData) => (
-        <ResumeSection data={sectionData} />
-      ))
-    }
-  </section>
-</Page>
+        <section
+          class="relative text-black p-4 font-serif text-center items-center flex flex-col gap-4 p-6"
+        >
+          <div
+            class="bg-white absolute w-full h-full -z-10 rounded-lg inset-0"
+            style='filter: url("#paper"); will-change: filter;'
+          >
+          </div>
+          <svg class="hidden"
+            ><filter id="paper"
+              ><feTurbulence
+                x="0"
+                y="0"
+                baseFrequency="0.02"
+                numOctaves="5"
+                seed="1"></feTurbulence><feDisplacementMap
+                in="SourceGraphic"
+                scale="20"></feDisplacementMap></filter
+            ></svg
+          >
+          <div class="flex flex-row gap-4 items-center justify-center">
+            <div class="flex flex-row gap-4">
+              <Icon class="inline" name="material-symbols:star" />
+              <Icon class="inline" name="material-symbols:star" />
+              <Icon class="inline" name="material-symbols:star" />
+            </div>
+            <h2 class="text-xl font-semibold inline">
+              Praise for <i class="inline-block">Roman Hauksson</i>
+            </h2>
+            <div class="flex flex-row gap-4">
+              <Icon class="inline" name="material-symbols:star" />
+              <Icon class="inline" name="material-symbols:star" />
+              <Icon class="inline" name="material-symbols:star" />
+            </div>
+          </div>
+          <ResumeQuote
+            quote="I also just have to say, your code is very exemplary in its organization and overall cleanliness. And so are your commits. I have a thing or two to learn from you!"
+            author="research collaborator"
+          />
+          <ResumeQuote
+            quote="You're the most technically skilled member on our team."
+            author="former manager"
+          />
+          <ResumeQuote
+            quote="I really do mean it when I say you're more capable than you have a right to be at your age..."
+            author="interviewer"
+          />
+        </section>
+
+        <section class="flex flex-col gap-4">
+          {
+            resumeSections.map((sectionData: ResumeSectionData) => (
+              <ResumeSection data={sectionData} />
+            ))
+          }
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
