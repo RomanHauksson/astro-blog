@@ -51,8 +51,8 @@ const Roman = () => {
         <label>rotY:  <input type="range" min="-1" max="1" step="0.05" value={cameraRotation.y} onChange={(e) => handleRotationSliderChange('y', e.target.value)} />{cameraRotation.y}</label>
         <label>rotZ:  <input type="range" min="-1" max="1" step="0.05" value={cameraRotation.z} onChange={(e) => handleRotationSliderChange('z', e.target. value)} />{cameraRotation.z}</label>
       </div> */}
-      {/* <Canvas camera={{ position: [0, 0, 0], rotation: [0, 0, 0]}}> */}
-      <Canvas>
+      <Canvas camera={{ position: [0, 0, 0], rotation: [0, 0, 0]}}>
+      {/* <Canvas> */}
         <OrbitControls />
         <Splat
           src="http://localhost:4321/output2-cropped.splat"
