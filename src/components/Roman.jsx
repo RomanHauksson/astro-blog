@@ -18,7 +18,7 @@ import { useState, useEffect } from 'react';
 
 const Roman = () => {
   // The position of the user's mouse on the screen, as a fraction of screen width or height
-  // const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
+  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
 
   // useEffect(() => {
   //   const handleMouseMove = (event) => {
@@ -38,24 +38,24 @@ const Roman = () => {
   //   };
   // }, []);
 
-  // useEffect(() => {
-  //   const handleMouseMove = (event) => {
-  //     const { clientX, clientY } = event;
-  //     const { innerWidth, innerHeight } = window;
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      const { clientX, clientY } = event;
+      const { innerWidth, innerHeight } = window;
 
-  //     const xPercentage = ((clientX / innerWidth));
-  //     const yPercentage = ((clientY / innerHeight));
+      const xPercentage = ((clientX / innerWidth));
+      const yPercentage = ((clientY / innerHeight));
 
-  //     setMousePosition({ x: xPercentage, y: yPercentage });
-  //   };
+      setMousePosition({ x: xPercentage, y: yPercentage });
+    };
 
-  //   window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
 
-  //   // Clean up the event listener on component unmount
-  //   return () => {
-  //     window.removeEventListener('mousemove', handleMouseMove);
-  //   };
-  // }, []);
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   // const handlePositionSliderChange = (axis, value) => {
   //   setCameraPosition(prev => ({ ...prev, [axis]: parseFloat(value) }));
@@ -84,7 +84,7 @@ const Roman = () => {
         <Splat
           src="http://localhost:4321/output3-cropped.splat"
           position={[0.3, -0.43, -1.74]}
-          // rotation={[0.15 + mousePosition.y * 0.4, -0.2 + mousePosition.x * 0.4, 0]}
+          rotation={[0.15 + mousePosition.y * 0.4, -0.2 + mousePosition.x * 0.4, 0]}
         />
       </Canvas>
     </div>
