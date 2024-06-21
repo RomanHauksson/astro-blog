@@ -82,7 +82,7 @@ const Roman = () => {
       <Canvas camera={{ position: [0, 0, 0], rotation: [0, 0, 0]}}>
         <OrbitControls />
         <Splat
-          src="http://localhost:4321/output3-cropped.splat"
+          src="https://roman.technology/Roman.splat"
           position={[0.3, -0.43, -1.74]}
           rotation={[0.15 + mousePosition.y * 0.4, -0.2 + mousePosition.x * 0.4, 0]}
         />
