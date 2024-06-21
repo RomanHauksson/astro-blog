@@ -18,31 +18,44 @@ import { useState, useEffect } from 'react';
 
 const Roman = () => {
   // The position of the user's mouse on the screen, as a fraction of screen width or height
-  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
-  // const [rotation, setRotation] = useState({ x: 0.35, y: 0, z: 0});
+  // const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
 
-  // const rotationArray = [rotation.x, rotation.y, rotation.z];
+  // useEffect(() => {
+  //   const handleMouseMove = (event) => {
+  //     const { pageX, pageY } = event;
 
-  // const basePosition = [0.3, -0.43, -1.74];
-  // const baseRotation = [0.35, 0, 0];
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      const { pageX, pageY } = event;
-
-      const xFraction = (pageX / document.documentElement.scrollWidth);
-      const yFraction = (pageY / document.documentElement.scrollHeight);
+  //     const xFraction = (pageX / document.documentElement.scrollWidth);
+  //     const yFraction = (pageY / document.documentElement.scrollHeight);
   
-      setMousePosition({ x: xFraction, y: yFraction });
-    };
+  //     setMousePosition({ x: xFraction, y: yFraction });
+  //   };
   
-    window.addEventListener('mousemove', handleMouseMove);
+  //   window.addEventListener('mousemove', handleMouseMove);
   
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+  //   // Clean up the event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener('mousemove', handleMouseMove);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const handleMouseMove = (event) => {
+  //     const { clientX, clientY } = event;
+  //     const { innerWidth, innerHeight } = window;
+
+  //     const xPercentage = ((clientX / innerWidth));
+  //     const yPercentage = ((clientY / innerHeight));
+
+  //     setMousePosition({ x: xPercentage, y: yPercentage });
+  //   };
+
+  //   window.addEventListener('mousemove', handleMouseMove);
+
+  //   // Clean up the event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener('mousemove', handleMouseMove);
+  //   };
+  // }, []);
 
   // const handlePositionSliderChange = (axis, value) => {
   //   setCameraPosition(prev => ({ ...prev, [axis]: parseFloat(value) }));
@@ -54,7 +67,7 @@ const Roman = () => {
 
   return (
     // <div className="relative h-[36rem] w-full rounded-lg m-auto border-2 border-slate-800">
-    <div className="relative h-[36rem] w-full m-auto overflow">
+    <div className="relative h-[36rem] w-full m-auto">
       {/* <Icon className="absolute top-0 right-0 m-4 h-8 w-8 text-slate-300" icon="material-symbols:3d-rotation" /> */}
       {/* <div className="p-4 flex flex-col">
         <label>X: <input type="range" step="0.01" min="-1" max="1" value={cameraPosition.x} onChange={(e) => handlePositionSliderChange('x', e.target.value)} />{cameraPosition.x} </label>
@@ -67,12 +80,11 @@ const Roman = () => {
         <label>rotZ:  <input type="range" min="-1" max="1" step="0.05" value={rotation.z} onChange={(e) => handleRotationSliderChange('z', e.target. value)} />{rotation.z}</label>
       </div> */}
       <Canvas camera={{ position: [0, 0, 0], rotation: [0, 0, 0]}}>
-      {/* <Canvas> */}
-        {/* <OrbitControls /> */}
+        <OrbitControls />
         <Splat
           src="http://localhost:4321/output3-cropped.splat"
           position={[0.3, -0.43, -1.74]}
-          rotation={[0.15 + mousePosition.y * 0.4, -0.2 + mousePosition.x * 0.4, 0]}
+          // rotation={[0.15 + mousePosition.y * 0.4, -0.2 + mousePosition.x * 0.4, 0]}
         />
       </Canvas>
     </div>
