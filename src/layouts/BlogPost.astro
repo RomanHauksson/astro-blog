@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import Page from "../layouts/Page.astro";
-type Props = CollectionEntry<"projects">["data"];
+type Props = CollectionEntry<"posts">["data"];
 import { Image } from "astro:assets";
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
@@ -48,7 +48,7 @@ if (!images[heroImage])
         )
       }
     </div>
-    <div class="prose prose-slate prose-invert">
+    <div class="prose prose-slate prose-invert prose-lg w-full">
       <div class="title">
         <div class="date">
           <FormattedDate date={pubDate} />

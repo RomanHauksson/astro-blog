@@ -8,6 +8,7 @@ interface Props {
   altText: string;
   title: string;
   description: string;
+  publishDate: string;
   published?: boolean;
 }
 
@@ -17,6 +18,7 @@ const {
   altText,
   title,
   description,
+  publishDate,
   published = true,
 } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -28,7 +30,7 @@ if (!images[imagePath])
   );
 ---
 
-<li
+<!-- <li
   class={`grow shrink basis-60 relative h-auto rounded-xl overflow-hidden shadow-lg ${published ? "hover:rotate-3 active:rotate-0 active:scale-90 duration-75" : ""}`}
 >
   <a {...published ? { href: `/projects/${slug}/` } : {}}>
@@ -56,4 +58,21 @@ if (!images[imagePath])
       </p>
     </div>
   </a>
-</li>
+</li> -->
+<a
+  href={`/posts/${slug}/`}
+  class="flex flex-row gap-4 h-64 hover:bg-slate-800 rounded-lg p-4 transition-all duration-100 border border-slate-800"
+>
+  <Image
+    src={images[imagePath]()}
+    alt={altText}
+    quality="mid"
+    loading="eager"
+    class="h-full w-auto rounded-lg"
+  />
+  <div class="flex flex-col">
+    <p class="text-gray-400">{publishDate}</p>
+    <h3 class="text-3xl font-bold">{title}</h3>
+    <p class="text-xl text-gray-200">{description}</p>
+  </div>
+</a>
