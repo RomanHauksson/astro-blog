@@ -1,34 +1,18 @@
 ---
 import Page from "../../layouts/Page.astro";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
-import PostCard from "../../components/PostCard.astro";
 import SearchPosts from "../../components/SearchPosts.tsx";
 
-const publishedPosts = await getCollection("posts", ({ data }) => {
-  return data.draft !== true;
-});
-publishedPosts.sort(
-  (a, b) =>
-    new Date(b.data.publishDate).getTime() -
-    new Date(a.data.publishDate).getTime()
-);
+// const publishedPosts = await getCollection("posts", ({ data }) => {
+//   return data.draft !== true;
+// });
+// publishedPosts.sort(
+//   (a, b) =>
+//     new Date(b.data.publishDate).getTime() -
+//     new Date(a.data.publishDate).getTime()
+// );
 ---
 
 <Page title={"posts"} description={"Roman Hauksson's posts."}>
-  <SearchPosts client:only />
-  <!-- <ul class="flex flex-col justify-center gap-4 w-full">
-    {
-      publishedPosts.map((post) => (
-        <PostCard
-          imagePath={post.data.heroImage}
-          description={post.data.description}
-          title={post.data.title}
-          publishDate={post.data.publishDate}
-          slug={post.slug}
-          altText=""
-        />
-      ))
-    }
-  </ul> -->
+  <SearchPosts client:only="react" />
 </Page>

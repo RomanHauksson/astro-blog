@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+
+const allBlogPosts = await getCollection("posts");
+
+const json = JSON.stringify(
+  allBlogPosts.map((post) => {
+    return {
+      title: post.data.title,
+      description: post.data.description,
+      slug: post.slug,
+      imagePath: post.data.heroImage,
+      publishDate: post.data.publishDate,
+      draft: post.data.draft,
+    };
+  })
+);
+---
+
+{json}

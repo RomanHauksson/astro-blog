@@ -31,27 +31,85 @@ const searchClient = typesenseInstantsearchAdapter.searchClient;
 interface HitProps {
   hit: {
     title: string;
+    description: string;
+    publishDate: string;
+    imagePath: string;
+    slug: string;
   };
 }
 
 export const Hit = ({ hit }: HitProps) => {
   return (
     <PostSearchResult
-      slug="test"
-      imagePath="/src/assets/screenshot.webp"
+      slug={hit.slug}
+      imagePath={hit.imagePath}
       title={hit.title}
-      description="test"
-      altText="test"
-      publishDate="2021-01-01"
+      description={hit.description}
+      altText={`Thumbnail for ${hit.title}`}
+      publishDate={hit.publishDate}
     />
   );
 };
 
 const SearchPosts = () => (
-  <InstantSearch indexName="posts" searchClient={searchClient}>
-    <SearchBox className="" />
-    <Hits hitComponent={Hit} />
-  </InstantSearch>
+  <>
+    <InstantSearch indexName="posts" searchClient={searchClient}>
+      <SearchBox className="" />
+      <Hits hitComponent={Hit} />
+    </InstantSearch>
+    <style>
+      {`
+      .ais-SearchBox {
+        width: 100%;
+        background-color: white;
+        border-radius: 0.5rem;
+        height: 3rem;
+      }
+      .ais-SearchBox-form {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      .ais-SearchBox-input {
+        color: black;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+      }
+      .ais-SearchBox-submitIcon {
+        height: 1.2rem;
+        width: 1.2rem;
+      }
+      .ais-SearchBox-submit {
+        background-color: white;
+        height: 100%;
+        width: 3rem;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ais-SearchBox-submit:hover {
+        background-color: lightblue;
+      }
+      .ais-SearchBox-reset {
+        display: none;
+      }
+      .ais-SearchBox-loadingIndicator {
+        display: none;
+      }
+      .ais-Hits-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    `}
+    </style>
+  </>
 );
 
 export default SearchPosts;

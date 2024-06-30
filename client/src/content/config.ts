@@ -10,15 +10,16 @@ import { z, defineCollection } from 'astro:content';
 // heroImage: "/src/assets/tangents.webp"
 
 // 2. Define a `type` and `schema` for each collection
-const blogCollection = defineCollection({
+const postsCollection = defineCollection({
   type: 'content', // v2.5.0 and later
   schema: z.object({
     title: z.string(),
-    projectDate: z.string(),
-    publishDate: z.string(),
-    lastUpdateDate: z.string(),
+    projectDate: z.string().optional(),
+    publishDate: z.string().optional(),
+    lastUpdateDate: z.string().optional(),
     description: z.string(),
     heroImage: z.string(),
+    draft: z.boolean().optional()
   }),
 });
 
@@ -26,5 +27,5 @@ const blogCollection = defineCollection({
 
 // 3. Export a single `collections` object to register your collection(s)
 export const collections = {
-  'blog': blogCollection,
+  'posts': postsCollection,
 };

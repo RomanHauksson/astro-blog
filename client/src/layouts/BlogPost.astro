@@ -5,7 +5,8 @@ import Page from "../layouts/Page.astro";
 type Props = CollectionEntry<"posts">["data"];
 import { Image } from "astro:assets";
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, publishDate, lastUpdateDate, heroImage } =
+  Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/*.{jpg,png,webp}"
 );
@@ -51,14 +52,14 @@ if (!images[heroImage])
     <div class="prose prose-slate prose-invert prose-lg w-full">
       <div class="title">
         <div class="date">
-          <FormattedDate date={pubDate} />
-          {
-            updatedDate && (
+          <!-- <FormattedDate date={publishDate} /> -->
+          <!-- {
+            lastUpdateDate && (
               <div class="last-updated-on">
-                Last updated on <FormattedDate date={updatedDate} />
+                Last updated on <FormattedDate date={lastUpdateDate} />
               </div>
             )
-          }
+          } -->
         </div>
       </div>
       <slot />
