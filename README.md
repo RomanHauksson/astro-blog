@@ -7,11 +7,14 @@ This is the repository for my blog and personal website. It was initialized usin
 | technology                               | purpose                               |
 | :--------------------------------------- | :------------------------------------ |
 | [Astro](https://astro.build/)            | static site generator / web framework |
+| [React](https://reactjs.org/)            | reactive components                   |
 | [Tailwind CSS](https://tailwindcss.com/) | styling                               |
 | [MDX](https://mdxjs.com/)                | writing documents                     |
-| [Vercel](https://vercel.com/)            | frontend hosting                            |
-| [Vimeo](https://vimeo.com/) | video hosting |
-| [PostHog](https://posthog.com/) | analytics |
+| [Vercel](https://vercel.com/)            | frontend hosting                      |
+| [Vimeo](https://vimeo.com/)              | video hosting                         |
+| [PostHog](https://posthog.com/)          | analytics                             |
+
+Current experimenting with setting up [Typesense](https://typesense.org/) to enable full text search of blog posts.
 
 ## installation
 
