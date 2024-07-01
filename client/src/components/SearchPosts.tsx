@@ -54,16 +54,16 @@ export const Hit = ({ hit }: HitProps) => {
 const SearchPosts = () => (
   <>
     <InstantSearch indexName="posts" searchClient={searchClient}>
-      <SearchBox className="" />
+      <SearchBox className="" placeholder="Search..." />
       <Hits hitComponent={Hit} />
     </InstantSearch>
     <style>
       {`
       .ais-SearchBox {
         width: 100%;
-        background-color: white;
-        border-radius: 0.5rem;
+        border-radius: 100rem;
         height: 3rem;
+        border: 1px solid #334155;
       }
       .ais-SearchBox-form {
         display: flex;
@@ -73,28 +73,32 @@ const SearchPosts = () => (
         align-items: center;
       }
       .ais-SearchBox-input {
-        color: black;
+        color: white;
         width: 100%;
         height: 100%;
-        border-radius: 0.5rem;
+        border-radius: 100rem 0 0 100rem;
         padding: 0.5rem;
-      }
-      .ais-SearchBox-submitIcon {
-        height: 1.2rem;
-        width: 1.2rem;
+        padding-left: 1rem;
+        background-color: transparent;
       }
       .ais-SearchBox-submit {
-        background-color: white;
-        height: 100%;
         width: 3rem;
-        border-radius: 0.5rem;
-        padding: 0.5rem;
+        height: 100%;
+        padding: 0.9rem;
+        padding-right: 1.05rem;
+        border-radius: 0 100rem 100rem 0;
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: #1e293b;
       }
       .ais-SearchBox-submit:hover {
-        background-color: lightblue;
+        background-color: #334155;
+      }
+      .ais-SearchBox-submitIcon {
+        fill: white;
+        height: 100%;
+        width: auto;
       }
       .ais-SearchBox-reset {
         display: none;
