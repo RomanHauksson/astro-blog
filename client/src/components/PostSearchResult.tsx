@@ -21,7 +21,7 @@ export const PostSearchResult = ({
   return (
     <a
       href={`/posts/${slug}/`}
-      className="flex flex-row flex-wrap gap-4 hover:bg-slate-800 rounded-lg p-4 transition-all duration-100 border border-slate-800"
+      className="flex flex-row flex-wrap gap-4 hover:bg-slate-800 rounded-lg p-4 transition-all duration-100 border border-slate-700"
     >
       <div className="basis-[10rem] grow">
         <img
