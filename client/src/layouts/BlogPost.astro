@@ -7,16 +7,19 @@ import { Image } from "astro:assets";
 
 const { title, description, publishDate, lastUpdateDate, heroImage } =
   Astro.props;
+
+const heroImagePath = "/public" + heroImage;
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.{jpg,png,webp}"
+  "/public/*.{jpg,png,webp}"
 );
-if (!images[heroImage])
+if (!images[heroImagePath])
   throw new Error(
-    `"${heroImage}" does not exist in glob: "/src/assets/*.{jpg,png,webp}"`
+    `"${heroImagePath}" does not exist in glob: "/public/*.{jpg,png,webp}"`
   );
 ---
 
-<Page title={title} description={description} image={heroImage}>
+<Page title={title} description={description} image={heroImagePath}>
   <script
     type="module"
     type="text/partytown"
@@ -41,7 +44,7 @@ if (!images[heroImage])
           <Image
             width={1020}
             height={510}
-            src={images[heroImage]()}
+            src={images[heroImagePath]()}
             quality="max"
             loading="eager"
             alt=""
