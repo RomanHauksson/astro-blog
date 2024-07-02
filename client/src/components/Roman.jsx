@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Splat, OrbitControls } from "@react-three/drei";
 import { Icon } from '@iconify/react';
 import { useState, useEffect } from 'react';
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 
 // rotation values
 // X
