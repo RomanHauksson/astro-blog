@@ -10,10 +10,10 @@ const typesenseInstantsearchAdapter = new TypesenseInstantsearchAdapter({
     apiKey: "lDhEhm2hz8J0YWb9NgRu7jiLEJhHJrYv", // Be sure to use an API key that only allows search operations
     nodes: [
       {
-        host: "137.184.38.192",
-        port: 8108,
+        host: "typesense.roman.technology",
+        port: 443,
         path: "", // Optional. Example: If you have your typesense mounted in localhost:8108/typesense, path should be equal to '/typesense'
-        protocol: "http",
+        protocol: "https",
       },
     ],
     cacheSearchResultsForSeconds: 2 * 60, // Cache search results from server. Defaults to 2 minutes. Set to 0 to disable caching.
