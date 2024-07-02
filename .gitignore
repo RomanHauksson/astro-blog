@@ -21,3 +21,5 @@ pnpm-debug.log*
 .DS_Store
 
 .vscode/
+
+personal_documentation.md

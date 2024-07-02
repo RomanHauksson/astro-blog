@@ -23,20 +23,3 @@ Current experimenting with setting up [Typesense](https://typesense.org/) to ena
 1. Clone the repository.
 2. Run `npm install` to install the dependencies.
 3. Run `npm run dev` to start a local development server at `localhost:4321`.
-
-### upload blog posts to Typesense
-
-1. Start up the Typesense service in the VPS.
-
-```bash
-docker run -p 8108:8108 \
-  -v"$(pwd)"/typesense-data:/data typesense/typesense:26.0 \
-  --data-dir /data \
-  --api-key=$TYPESENSE_API_KEY \
-  --enable-cors
-```
-
-IPv6: 2604:a880:4:1d0::5c0:3000
-IPv4: 137.184.38.192
-
-2. `npx tsx client/src/lib/typesense.ts`
