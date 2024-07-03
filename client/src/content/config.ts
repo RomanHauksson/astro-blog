@@ -14,7 +14,6 @@ const postsCollection = defineCollection({
   type: 'content', // v2.5.0 and later
   schema: z.object({
     title: z.string(),
-    projectDate: z.string().optional(),
     publishDate: z.string().optional(),
     lastUpdateDate: z.string().optional(),
     description: z.string(),
@@ -23,9 +22,21 @@ const postsCollection = defineCollection({
   }),
 });
 
-
+const projectsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    heroImage: z.string(),
+    projectDate: z.string().optional(),
+    publishDate: z.string().optional(),
+    lastUpdateDate: z.string().optional(),
+    draft: z.boolean().optional()
+  }),
+});
 
 // 3. Export a single `collections` object to register your collection(s)
 export const collections = {
   'posts': postsCollection,
+  'projects': projectsCollection
 };
