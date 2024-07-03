@@ -56,13 +56,21 @@ import { optional } from 'astro/zod';
     ],
   };
 
+  const projectsSchema = {
+    name: 'projects',
+    fields: [
+      { name: 'title', type: 'string' },
+      { name: 'description', type: 'string' },
+      { name: 'slug', type: 'string' },
+      { name: 'technologies', type: 'string', optional: true },
+    ],
+  };
+
   // const postsSchema = zodToTypesenseSchema(collections.blog.schema, 'posts');
 
   // Create post schema
   await client.collections().create(postsSchema);
-
-  console.log('made it!');
-  console.log(process.env.SEARCH_ENDPOINT);
+  await client.collections().create(projectsSchema);
 
   // Retrieve data and extract JSON
   const data = fetch(process.env.SEARCH_ENDPOINT)

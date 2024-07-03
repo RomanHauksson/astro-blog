@@ -1,0 +1,8 @@
+---
+import Page from "../../layouts/Page.astro";
+import SearchPosts from "../../components/SearchPosts.tsx";
+---
+
+<Page title={"projects"} description={"Roman Hauksson's projects."}>
+  <SearchPosts client:only="react" />
+</Page>
