@@ -8,6 +8,7 @@ interface Props {
   description: string;
   publishDate: string;
   published?: boolean;
+  technologies?: string[];
 }
 
 export const PostSearchResult = ({
@@ -17,6 +18,7 @@ export const PostSearchResult = ({
   title,
   description,
   publishDate,
+  technologies,
 }: Props) => {
   return (
     <a
@@ -35,6 +37,13 @@ export const PostSearchResult = ({
         <p className="text-gray-400">{publishDate}</p>
         <h3 className="text-3xl font-bold">{title}</h3>
         <p className="text-xl text-gray-200">{description}</p>
+        {technologies && (
+          <div className="flex flex-row flex-wrap gap-2">
+            {technologies.map((technology) => (
+              <p className="text-gray-400">{technology}</p>
+            ))}
+          </div>
+        )}
       </div>
     </a>
   );

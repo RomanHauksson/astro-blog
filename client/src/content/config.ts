@@ -31,7 +31,8 @@ const projectsCollection = defineCollection({
     projectDate: z.string().optional(),
     publishDate: z.string().optional(),
     lastUpdateDate: z.string().optional(),
-    draft: z.boolean().optional()
+    draft: z.boolean().optional(),
+    technologies: z.array(z.string()).optional()
   }),
 });
 
