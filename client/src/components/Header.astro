@@ -3,20 +3,48 @@ import HeaderLink from "./HeaderLink.astro";
 import ActionButton from "./ActionButton.astro";
 // import ThemeToggle from "./ThemeToggle.tsx";
 import { SITE_TITLE } from "../consts";
+import { Icon } from "astro-icon/components";
 ---
 
 <header class="sticky top-0 z-10">
-  <nav
-    class="flex flex-col sm:flex-row items-center justify-between gap-x-6 gap-y-2 py-3 px-6 bg-slate-900/80 backdrop-blur border-b-[1px] border-slate-900"
+  <div
+    class="flex sm:flex-row flex-col items-center justify-between gap-x-6 gap-y-2 py-3 px-6 bg-slate-900/80 backdrop-blur border-b-[1px] border-slate-900"
   >
-    <h1 class="font-bold text-xl text-white leading-tight text-nowrap">
-      <a href="/">{SITE_TITLE}</a>
-    </h1>
-    <div class="flex flex-row gap-4">
-      <!-- <ThemeToggle client:load /> -->
-      <HeaderLink href="/posts">posts</HeaderLink>
-      <HeaderLink href="/resume">resume</HeaderLink>
-      <ActionButton href="/contact" class="px-3 py-2">contact</ActionButton>
+    <div class="flex flex-row justify-between w-full">
+      <h1 class="font-bold text-xl text-white leading-tight text-nowrap">
+        <a href="/">{SITE_TITLE}</a>
+      </h1>
+      <Icon
+        class="flex sm:hidden text-white text-2xl cursor-pointer"
+        name="mdi:hamburger-menu"
+        id="show-menu-icon"
+      />
     </div>
-  </nav>
+    <nav
+      class="hidden flex-col w-full sm:w-auto sm:flex sm:flex-row gap-x-4 gap-y-6 items-center text-center"
+      id="menu"
+    >
+      <!-- <ThemeToggle client:load /> -->
+      <HeaderLink class="w-full sm:w-auto" href="/posts">posts</HeaderLink>
+      <HeaderLink class="w-full sm:w-auto" href="/resume">resume</HeaderLink>
+      <ActionButton class="w-full sm:w-auto" href="/contact" class="px-3 py-2"
+        >contact</ActionButton
+      >
+    </nav>
+  </div>
 </header>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    const icon = document.querySelector("#show-menu-icon");
+    const menu = document.querySelector("#menu");
+
+    icon.addEventListener("click", function () {
+      if (menu.style.display === "none") {
+        menu.style.display = "flex";
+      } else {
+        menu.style.display = "none";
+      }
+    });
+  });
+</script>
