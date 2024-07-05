@@ -1,6 +1,6 @@
 # my blog
 
-This is the repository for my blog and personal website. It was initialized using [Astro's official blog template](https://astro.build/themes/details/blog/), but I wrote all of the components from scratch, except a couple. You can visit it at [roman.computer](https://roman.computer) or [roman.technology](https://roman.technology).
+This is the repository for my personal website and blog. I made it from scratch using the [Astro](https://astro.build) web framework and [Tailwind CSS](https://tailwindcss.com). You can visit it at [roman.computer](https://roman.computer) or [roman.technology](https://roman.technology).
 
 ## tech stack
 
@@ -13,8 +13,8 @@ This is the repository for my blog and personal website. It was initialized usin
 | [Vercel](https://vercel.com/)            | frontend hosting                      |
 | [Vimeo](https://vimeo.com/)              | video hosting                         |
 | [PostHog](https://posthog.com/)          | analytics                             |
-
-Current experimenting with setting up [Typesense](https://typesense.org/) to enable full text search of blog posts.
+| [Docker](https://www.docker.com/) | backend services |
+| [Typesense](https://typesense.org/) | full text search |
 
 ## usage
 
