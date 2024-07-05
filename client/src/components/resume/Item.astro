@@ -1,8 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
-import type { ResumeEntryData } from "../types";
+import type { ItemData } from "../../types/resume";
 interface Props {
-  data: ResumeEntryData;
+  data: ItemData;
 }
 const {
   name,
@@ -10,12 +10,12 @@ const {
   startMonth = null,
   endMonth = null,
   location = null,
-  description = null,
+  notes = null,
   technologies = null,
 } = Astro.props.data;
 ---
 
-<li class="rounded-xl bg-slate-800 p-2 px-3 shadow">
+<div class="">
   <h3 class="font-medium text-xl">
     {
       link ? (
@@ -27,23 +27,23 @@ const {
         name
       )
     }
-    {location && " (" + location + ")"}
   </h3>
 
   {
     startMonth && (
       <p class="italic">
         {startMonth} {endMonth && " – " + endMonth}
+        {location && <span class="">{`• ${location}`}</span>}
       </p>
     )
   }
   {
-    description && (
-      <ul class="list-disc pl-4">
-        {description.map((item, index) => (
-          <li>{item}</li>
+    notes && (
+      <ul class="list-disc ml-6">
+        {notes.map((note) => (
+          <li>{note}</li>
         ))}
       </ul>
     )
   }
-</li>
+</div>

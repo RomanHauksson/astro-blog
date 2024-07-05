@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+import type { OrganizationData, PositionData } from "../../types/resume";
+interface Props {
+  data: OrganizationData;
+}
+const { name, link, positions } = Astro.props.data;
+---
+
+<div class="flex flex-col gap-2">
+  <h3 class="font-medium text-2xl">
+    {
+      link ? (
+        <a class="text-indigo-300 hover:text-indigo-100" href={link}>
+          {name}
+          <Icon class="inline-block" name="line-md:external-link" />
+        </a>
+      ) : (
+        name
+      )
+    }
+  </h3>
+  <div class="flex flex-col gap-4 ml-4">
+    {
+      positions.map((position: PositionData) => (
+        <div class="">
+          <h4 class="font-medium text-xl">{position.title}</h4>
+          <div class="italic">
+            {position.startMonth} – {position.endMonth}
+            {position.location && (
+              <span class="">{`• ${position.location}`}</span>
+            )}
+          </div>
+          <ul>
+            {position.notes &&
+              position.notes.map((note) => (
+                <li class="list-disc ml-6">{note}</li>
+              ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</div>

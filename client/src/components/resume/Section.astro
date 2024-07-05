@@ -1,0 +1,33 @@
+---
+import Item from "./Item.astro";
+import Organization from "./Organization.astro";
+import { Icon } from "astro-icon/components";
+import type {
+  SectionData,
+  ItemData,
+  OrganizationData,
+} from "../../types/resume";
+interface Props {
+  data: SectionData;
+}
+const { name, icon, type, entries } = Astro.props.data;
+---
+
+<section
+  id={name}
+  class="flex flex-col gap-2 scroll-mt-16 target:animate-flash p-2 rounded-lg"
+>
+  <div class="font-bold text-3xl flex flex-row items-center gap-2">
+    {icon && <Icon class="inline-block" name={icon} />}
+    <h2 class="">{name}</h2>
+  </div>
+  <div class="flex flex-col gap-4">
+    {
+      type === "organizations"
+        ? entries.map((data: OrganizationData | ItemData) => (
+            <Organization data={data as OrganizationData} />
+          ))
+        : entries.map((data: ItemData) => <Item data={data} />)
+    }
+  </div>
+</section>

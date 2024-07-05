@@ -1,155 +1,211 @@
 ---
-import Page from "../layouts/Page.astro";
-import ResumeSection from "../components/ResumeSection.astro";
-import type { ResumeSectionData } from "../types";
-import ResumeIcon from "../components/ResumeIcon.astro";
-import ResumeQuote from "../components/ResumeQuote.astro";
+import type {
+  SectionData,
+  OrganizationData,
+  PositionData,
+  ItemData,
+} from "../types/resume";
+import Link from "../components/resume/Link.astro";
+import Praise from "../components/resume/Praise.astro";
 import { Icon } from "astro-icon/components";
+import Section from "../components/resume/Section.astro";
 
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const resumeSections: ResumeSectionData[] = [
+const sections: SectionData[] = [
   {
     name: "education",
     icon: "material-symbols:school-outline",
+    type: "organizations",
     entries: [
       {
         name: "University of Texas at Dallas",
-        description: ["B.S. in Computer Science, National Merit Scholar"],
-        startMonth: "Aug 2021",
-        endMonth: "Dec 2025 (Expected)",
+        positions: [
+          {
+            title: "B.S. in Computer Science",
+            startMonth: "Aug 2021",
+            endMonth: "Dec 2025 (Expected)",
+            notes: [
+              "National Merit Scholar, Cybersecurity Group officer, Open Source Software Club officer",
+            ],
+          },
+        ],
       },
-    ],
+    ] as OrganizationData[],
   },
   {
     name: "work experience",
+    type: "organizations",
     icon: "material-symbols:work-outline",
     entries: [
       {
-        name: "Capital One: Software Engineering Intern",
-        location: "McLean, Virginia",
-        startMonth: "Jun 2023",
-        endMonth: "Aug 2023",
-        description: [
-          "Created front end for Chrome extension using React. Refactored build tool to increase preview speed by 300%.",
-          "Completed 4-week curriculum on full-stack technologies including Go, React, and Linux.",
+        name: "Capital One",
+        positions: [
+          {
+            title: "Software Engineering Intern",
+            location: "McLean, VA",
+            startMonth: "Jun 2023",
+            endMonth: "Aug 2023",
+            notes: [
+              "Created Chrome extension with React, refactored build tool to increase preview speed by 300%",
+              "Completed 4-week curriculum on full-stack technologies including Go, React, and Linux",
+            ],
+          },
         ],
       },
       {
-        name: "Joint Special Operations Command: Software Engineering Intern",
-        location: "Virtual",
-        startMonth: "Jun 2022",
-        endMonth: "Aug 2022",
-        description: ["Created Python interface for internal Node.js API."],
+        name: "Joint Special Operations Command",
+        positions: [
+          {
+            title: "Software Engineering Intern",
+            startMonth: "Jun 2022",
+            endMonth: "Aug 2022",
+            location: "Remote",
+            notes: ["Created Python interface for internal Node API"],
+          },
+        ],
       },
-    ],
+    ] as OrganizationData[],
+  },
+  {
+    name: "research experience",
+    type: "organizations",
+    icon: "material-symbols:search",
+    entries: [
+      {
+        name: "Dioptra",
+        positions: [
+          {
+            title: "Independent Research Assistant",
+            startMonth: "Dec 2023",
+            endMonth: "Current",
+            location: "Remote",
+            notes: [
+              "Helped create GameBench: a benchmark to test the strategic reasoning ability of large language models",
+              "Coded benchmark task, conducted literature review, wrote related works section, did factor analysis",
+              "Currently researching international AI governance",
+            ],
+          },
+        ],
+      },
+      {
+        name: "ACM UTD Research Program",
+        positions: [
+          {
+            title: "Director",
+            startMonth: "May 2022",
+            endMonth: "Dec 2022",
+            notes: [
+              "Directed semester-long undergraduate research program with 15% admission rate",
+              "Managed 4 teams of 6 students each, hosted poster presentation event for 50+ attendees",
+            ],
+          },
+          {
+            title: "Team Lead",
+            startMonth: "Dec 2021",
+            endMonth: "Apr 2022",
+            notes: [
+              "Fine-tuned GPT-3 to generate targeted password guesses, achieved 3+ times higher accuracy than baseline, won poster presentation contest versus 5 other teams, amassed 70 stars on GitHub",
+              "Presented separately at the Hackers on Planet Earth conference to audience of 20+",
+            ],
+          },
+          {
+            title: "Assistant",
+            startMonth: "Sep 2021",
+            endMonth: "Nov 2021",
+            notes: [
+              "Trained LSTM model with team of 4, won poster presentation contest versus 5 other teams",
+            ],
+          },
+        ],
+      },
+    ] as OrganizationData[],
   },
   {
     name: "projects",
+    type: "items",
     icon: "material-symbols:rocket-launch-outline",
     entries: [
       {
         name: 'Demo for "I"',
         link: "https://roman.technology/projects/i-demo/",
-        description: [
-          "Designed and created full-stack demo for a friend's startup, a trading platform for securitized income share agreements.",
+        notes: [
+          "Designed and coded simulated trading platform for securitized income share agreements",
         ],
         technologies: ["Figma", "Next", "Vercel", "Supabase", "Tailwind"],
       },
       {
         name: "Manifold Markets Depth Chart Feature",
         link: "https://manifold.markets",
-        description: [
-          "Created React component to visualize the market depth of prediction markets.",
-          "Won 3rd place in Manifold Markets Hackathon and pushed it to production on a site with 800+ daily active users.",
+        notes: [
+          "Created React component to visualize prediction market depth, won 3rd place in hackathon, pushed to production on site with 800+ daily active users",
         ],
         technologies: ["React", "Typescript"],
       },
       {
         name: "MF FOOM",
         link: "http://roman.technology/projects/mf-foom/",
-        description: [
-          "Fine-tuned GPT-3 on the lyrics of 96 MF DOOM songs to write lyrics in his style, then cloned his voice to edit those lyrics into a song.",
+        notes: [
+          "Fine-tuned GPT-3 on the lyrics of 96 MF DOOM songs to write lyrics in his style, then cloned his voice to edit those lyrics into a song",
         ],
         technologies: ["Python", "GPT-3", "ElevenLabs"],
       },
       {
         name: "Just Arrived – HackUTD VIII",
         link: "https://devpost.com/software/fresh-off-the-plane",
-        description: [
-          "Designed and coded front end for an app to help international students; won Nebula API Challenge.",
+        notes: [
+          "Designed and coded frontend for app to help international students, won hackathon challenge",
         ],
         technologies: ["Flutter"],
       },
-    ],
+    ] as ItemData[],
   },
   {
-    name: "research",
-    icon: "material-symbols:search",
-    entries: [
-      {
-        name: "ACM UTD Research Program: Director",
-        link: "https://acmutd.co/research",
-        startMonth: "May 2022",
-        endMonth: "Dec 2022",
-        description: [
-          "Directed a semester-long program with a ~15% admission rate that gives undergraduates hands-on exposure to CS research.",
-          "Managed 4 teams of 6 students each and hosted the research presentation event for 50+ attendees.",
-        ],
-      },
-      {
-        name: "ACM UTD Research Program: Team Lead",
-        link: "https://github.com/ACM-Research/targeted-password-guesses",
-        startMonth: "Dec 2021",
-        endMonth: "Apr 2022",
-        description: [
-          "Fine-tuned GPT-3 on user data to explore the use of language models to generate targeted password guesses.",
-          "Achieved >3 times higher accuracy than baseline, won the research presentation contest versus 5 other teams, and amassed 61 stars on GitHub.",
-        ],
-      },
-      {
-        name: "ACM UTD Research Program: Participant",
-        link: "https://github.com/ACM-Research/language-trends-mobile-keyboard",
-        startMonth: "Sep 2021",
-        endMonth: "Nov 2021",
-        description: [
-          "Using Tensorflow, trained an LSTM model on Tweets from different subgroups on Twitter with a team of 4.",
-          "Won the research presentation contest versus 5 other teams.",
-        ],
-      },
-    ],
-  },
-  {
-    name: "experiences",
+    name: "professional development",
+    type: "items",
     icon: "material-symbols:explore-outline",
     entries: [
+      {
+        name: "Global Challenges Project Existential Risk Workshop",
+        location: "Berkeley, CA",
+        startMonth: "Nov 2023",
+      },
       {
         name: "Program on AI and Reasoning",
         location: "Cambridge, UK",
         startMonth: "Aug 2023",
-        description: [
-          "Learned about AI and cognition at a 10-day camp for mathematically talented students (2.5% acceptance rate).",
+        notes: [
+          "Studied AI and cognition at 10-day camp for mathematically talented students (2.5% acceptance rate)",
         ],
       },
       {
-        name: "We'll Pwn You With Your Wattpad Profile",
-        location: "New York, New York",
-        startMonth: "Jul 2022",
-        description: [
-          "Delivered talk on password cracking at the Hackers on Planet Earth conference to an audience of 20+ hackers.",
-        ],
+        name: "AI safety workshop",
+        location: "Berkeley, CA",
+        startMonth: "Nov 2022",
+      },
+      {
+        name: "Effective Altruism Introductory Program",
+        location: "Remote",
+        startMonth: "Oct 2022",
+        endMonth: "Nov 2022",
       },
       {
         name: "TexSAW 2022 Capture The Flag Winner",
-        location: "Dallas, Texas",
+        location: "Dallas, TX",
         startMonth: "Apr 2022",
-        description: [
-          "Won a cybersecurity CTF competition with a partner against 10+ teams.",
+        notes: [
+          "Won cybersecurity CTF competition with a partner against 10+ teams",
         ],
       },
-    ],
+      {
+        name: "CodePath Cybersecurity course",
+        location: "Remote",
+        startMonth: "Jan 2022",
+        endMonth: "Apr 2022",
+      },
+    ] as ItemData[],
   },
 ];
 ---
@@ -173,13 +229,13 @@ const resumeSections: ResumeSectionData[] = [
             contents
           </h2>
           {
-            resumeSections.map((sectionData: ResumeSectionData) => (
+            sections.map((data: SectionData) => (
               <a
                 class="text-white/80 hover:text-white flex flex-row items-center gap-2"
-                href={`#${sectionData.name}`}
+                href={`#${data.name}`}
               >
-                <Icon name={sectionData.icon} />
-                <span>{sectionData.name}</span>
+                <Icon name={data.icon} />
+                <span>{data.name}</span>
               </a>
             ))
           }
@@ -188,73 +244,19 @@ const resumeSections: ResumeSectionData[] = [
       <div class="row-start-2 col-start-2 flex flex-col gap-6">
         <section>
           <div class="flex flex-row gap-4">
-            <ResumeIcon
+            <Link
               link="https://www.linkedin.com/in/romanhauksson"
               icon="mdi:linkedin"
             />
-            <ResumeIcon
-              link="https://github.com/romanhauksson"
-              icon="mdi:github"
-            />
-            <ResumeIcon link="/resume.pdf" icon="mdi:file-pdf-box" />
+            <Link link="https://github.com/romanhauksson" icon="mdi:github" />
+            <Link link="/resume.pdf" icon="mdi:file-pdf-box" />
           </div>
         </section>
 
-        <section
-          class="relative text-black p-4 font-serif text-center items-center flex flex-col gap-4 p-6"
-        >
-          <div
-            class="bg-white absolute w-full h-full -z-10 rounded-lg inset-0"
-            style='filter: url("#paper"); will-change: filter;'
-          >
-          </div>
-          <svg class="hidden"
-            ><filter id="paper"
-              ><feTurbulence
-                x="0"
-                y="0"
-                baseFrequency="0.02"
-                numOctaves="5"
-                seed="1"></feTurbulence><feDisplacementMap
-                in="SourceGraphic"
-                scale="20"></feDisplacementMap></filter
-            ></svg
-          >
-          <div class="flex flex-row gap-4 items-center justify-center">
-            <div class="flex flex-row gap-4">
-              <Icon class="inline" name="material-symbols:star" />
-              <Icon class="inline" name="material-symbols:star" />
-              <Icon class="inline" name="material-symbols:star" />
-            </div>
-            <h2 class="text-xl font-semibold inline">
-              Praise for <i class="inline-block">Roman Hauksson</i>
-            </h2>
-            <div class="flex flex-row gap-4">
-              <Icon class="inline" name="material-symbols:star" />
-              <Icon class="inline" name="material-symbols:star" />
-              <Icon class="inline" name="material-symbols:star" />
-            </div>
-          </div>
-          <ResumeQuote
-            quote="I also just have to say, your code is very exemplary in its organization and overall cleanliness. And so are your commits. I have a thing or two to learn from you!"
-            author="research collaborator"
-          />
-          <ResumeQuote
-            quote="You're the most technically skilled member on our team."
-            author="former manager"
-          />
-          <ResumeQuote
-            quote="I really do mean it when I say you're more capable than you have a right to be at your age..."
-            author="interviewer"
-          />
-        </section>
+        <Praise />
 
         <section class="flex flex-col gap-4">
-          {
-            resumeSections.map((sectionData: ResumeSectionData) => (
-              <ResumeSection data={sectionData} />
-            ))
-          }
+          {sections.map((data: SectionData) => <Section data={data} />)}
         </section>
       </div>
     </main>
