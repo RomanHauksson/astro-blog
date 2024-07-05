@@ -8,6 +8,7 @@ This is the repository for my personal website and blog. I made it from scratch 
 | :--------------------------------------- | :------------------------------------ |
 | [Astro](https://astro.build/)            | static site generator / web framework |
 | [React](https://reactjs.org/)            | reactive components                   |
+| [Typescript](https://www.typescriptlang.org/) | scripting |
 | [Tailwind CSS](https://tailwindcss.com/) | styling                               |
 | [MDX](https://mdxjs.com/)                | writing documents                     |
 | [Vercel](https://vercel.com/)            | frontend hosting                      |
