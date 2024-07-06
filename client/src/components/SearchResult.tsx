@@ -1,6 +1,5 @@
-import React from "react";
-
 interface Props {
+  collection: string;
   heroImagePath: string;
   slug: string;
   altText: string;
@@ -11,7 +10,8 @@ interface Props {
   technologies?: string[];
 }
 
-export const PostSearchResult = ({
+export const SearchResult = ({
+  collection,
   heroImagePath,
   slug,
   altText,
@@ -22,7 +22,7 @@ export const PostSearchResult = ({
 }: Props) => {
   return (
     <a
-      href={`/posts/${slug}/`}
+      href={`/${collection}/${slug}/`}
       className="flex flex-row flex-wrap gap-4 hover:bg-slate-800 rounded-lg p-4 transition-all duration-100 border border-slate-700"
     >
       <div className="basis-[10rem] grow">

@@ -1,11 +1,81 @@
 ---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
 interface Props {
-  q: string;
-  a: string;
-  image?: URL;
+  heroImagePath: string;
+  collection: string;
+  slug: string;
+  altText: string;
+  title: string;
+  description: string;
+  publishDate: string;
+  published?: boolean;
 }
 
-const { q, a } = Astro.props;
+const {
+  heroImagePath,
+  collection,
+  slug,
+  altText,
+  title,
+  description,
+  publishDate,
+} = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpg,png,webp}"
+);
+if (!images[heroImagePath])
+  throw new Error(
+    `"${heroImagePath}" does not exist in glob: "/src/assets/*.{jpg,png,webp}"`
+  );
 ---
 
-<orbit-prompt question={q} answer={a}></orbit-prompt>
+<!-- <li
+  class={`grow shrink basis-60 relative h-auto rounded-xl overflow-hidden shadow-lg ${published ? "hover:rotate-3 active:rotate-0 active:scale-90 duration-75" : ""}`}
+>
+  <a {...published ? { href: `/projects/${slug}/` } : {}}>
+    <Image
+      src={images[imagePath]()}
+      alt={altText}
+      quality="mid"
+      loading="eager"
+      class="rounded-xl border border-slate-800"
+    />
+    <div
+      class={`absolute inset-0 bg-gradient-to-b from-black/80 ${published ? "" : "to-black/40"}`}
+    >
+    </div>
+    <div class="absolute top-0 w-full text-white p-2">
+      <h3
+        class={`text-xl font-bold text-shadow ${published ? "" : "text-gray-400"}`}
+      >
+        {title}
+      </h3>
+      <p
+        class={`text-base leading-6 text-shadow ${published ? "" : "text-gray-400"}`}
+      >
+        {description}
+      </p>
+    </div>
+  </a>
+</li> -->
+<a
+  href={`/${collection}/${slug}/`}
+  class="flex flex-row flex-wrap gap-4 hover:bg-slate-800 rounded-lg p-4 transition-all duration-100 border border-slate-800"
+>
+  <div class="basis-[10rem] grow">
+    <Image
+      src={images[heroImagePath]()}
+      alt={altText}
+      quality="mid"
+      loading="eager"
+      class="max-w-full rounded-lg"
+    />
+  </div>
+  <div class="flex flex-col shrink grow basis-[15rem]">
+    <p class="text-gray-400">{publishDate}</p>
+    <h3 class="text-3xl font-bold">{title}</h3>
+    <p class="text-xl text-gray-200">{description}</p>
+  </div>
+</a>
