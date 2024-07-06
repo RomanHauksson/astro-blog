@@ -1,13 +1,10 @@
 // https://github.com/rebelchris/astro-typesense-search/blob/master/src/lib/typesense.js
 
 import 'dotenv/config'
-// import { zodToTypesenseSchema } from './zodToTypesense.js';
-// import { collections } from '../content/config.ts';
 import Typesense from 'typesense';
 import fetch from 'node-fetch';
 import type { NodeConfigurationWithHostname } from 'typesense/lib/Typesense/Configuration';
 import he from 'he';
-import { optional } from 'astro/zod';
 
 (async () => {
   if (!process.env.TYPESENSE_HOST) {
@@ -21,6 +18,9 @@ import { optional } from 'astro/zod';
   }
   if (!process.env.TYPESENSE_ADMIN_KEY) {
     throw new Error('TYPESENSE_ADMIN_KEY is not set');
+  }
+  if (!process.env.SEARCH_ENDPOINT) {
+    throw new Error('SEARCH_ENDPOINT is not set');
   }
 
   // Create a new client
@@ -40,7 +40,14 @@ import { optional } from 'astro/zod';
   try {
     await client.collections('posts').delete();
   } catch (error) {
-    console.error('Could not delete posts collection');
+    console.log('Could not delete posts collection');
+  }
+
+  // Delete the old projects collection if it exists
+  try {
+    await client.collections('projects').delete();
+  } catch (error) {
+    console.error('Could not delete projects collection');
   }
 
   // Create a post schema
@@ -48,11 +55,12 @@ import { optional } from 'astro/zod';
     name: 'posts',
     fields: [
       { name: 'title', type: 'string' },
-      { name: 'description', type: 'string' },
-      { name: 'slug', type: 'string' },
-      { name: 'imagePath', type: 'string' },
       { name: 'publishDate', type: 'string' },
+      { name: 'lastUpdateDate', type: 'string' },
+      { name: 'description', type: 'string' },
+      { name: 'heroImagePath', type: 'string' },
       { name: 'draft', type: 'bool', optional: true },
+      { name: 'slug', type: 'string' },
     ],
   };
 
@@ -61,24 +69,28 @@ import { optional } from 'astro/zod';
     fields: [
       { name: 'title', type: 'string' },
       { name: 'description', type: 'string' },
+      { name: 'heroImagePath', type: 'string' },
+      { name: 'projectDate', type: 'string', optional: true },
+      { name: 'publishDate', type: 'string', optional: true },
+      { name: 'lastUpdateDate', type: 'string', optional: true },
+      { name: 'draft', type: 'bool', optional: true },
+      { name: 'technologies', type: 'string[]', optional: true },
+      { name: 'hoursWorked', type: 'int32', optional: true },
       { name: 'slug', type: 'string' },
-      { name: 'technologies', type: 'string', optional: true },
     ],
   };
 
-  // const postsSchema = zodToTypesenseSchema(collections.blog.schema, 'posts');
-
-  // Create post schema
+  // Create schemas
   await client.collections().create(postsSchema);
   await client.collections().create(projectsSchema);
 
   // Retrieve data and extract JSON
-  const data = fetch(process.env.SEARCH_ENDPOINT)
+  const data = await fetch(process.env.SEARCH_ENDPOINT)
     .then((response) => response.text())
     .then((text) => {
       // Find the JSON part within the HTML response
-      const jsonStart = text.indexOf('[{');
-      const jsonEnd = text.lastIndexOf('}]') + 2;
+      const jsonStart = text.indexOf('{');
+      const jsonEnd = text.lastIndexOf('}') + 2;
       const jsonData = text.substring(jsonStart, jsonEnd);
 
       // Decode HTML entities
@@ -89,7 +101,9 @@ import { optional } from 'astro/zod';
       return parsedData;
     });
 
-  const posts = await data.then((res) => res);
+  const posts = data.posts;
+  const projects = data.projects;
+
   for (const post of posts) {
     console.log("Attempting to upload a post. Here's its data:")
     console.log(post)
@@ -99,6 +113,17 @@ import { optional } from 'astro/zod';
     }
     const createPostResult = await client.collections('posts').documents().create(post);
     console.log(createPostResult);
+  }
+
+  for (const project of projects) {
+    console.log("Attempting to upload a project. Here's its data:")
+    console.log(project)
+    if (project.draft) {
+      console.log("Skipping draft project")
+      continue;
+    }
+    const createProjectResult = await client.collections('projects').documents().create(project);
+    console.log(createProjectResult);
   }
 
 })().catch((err) => {

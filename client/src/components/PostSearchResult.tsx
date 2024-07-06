@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-  imagePath: string;
+  heroImagePath: string;
   slug: string;
   altText: string;
   title: string;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const PostSearchResult = ({
-  imagePath,
+  heroImagePath,
   slug,
   altText,
   title,
@@ -27,7 +27,7 @@ export const PostSearchResult = ({
     >
       <div className="basis-[10rem] grow">
         <img
-          src={imagePath}
+          src={heroImagePath}
           alt={altText}
           loading="eager"
           className="max-w-full rounded-lg"

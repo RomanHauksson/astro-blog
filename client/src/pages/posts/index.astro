@@ -1,7 +1,7 @@
 ---
 import Page from "../../layouts/Page.astro";
 import { getCollection } from "astro:content";
-import SearchPosts from "../../components/SearchPosts.tsx";
+import Search from "../../components/Search.tsx";
 
 // const publishedPosts = await getCollection("posts", ({ data }) => {
 //   return data.draft !== true;
@@ -14,5 +14,5 @@ import SearchPosts from "../../components/SearchPosts.tsx";
 ---
 
 <Page title={"posts"} description={"Roman Hauksson's posts."}>
-  <SearchPosts client:only="react" />
+  <Search collection="posts" client:only="react" />
 </Page>

@@ -7,7 +7,7 @@ import { PostSearchResult } from "./PostSearchResult";
 
 const typesenseInstantsearchAdapter = new TypesenseInstantsearchAdapter({
   server: {
-    apiKey: "lDhEhm2hz8J0YWb9NgRu7jiLEJhHJrYv", // Be sure to use an API key that only allows search operations
+    apiKey: "BB0pW7z9HndYa0dVbCsjZ6Vdc2dXdO2A", // Be sure to use an API key that only allows search operations
     nodes: [
       {
         host: "typesense.roman.technology",
@@ -33,7 +33,7 @@ interface HitProps {
     title: string;
     description: string;
     publishDate: string;
-    imagePath: string;
+    heroImagePath: string;
     slug: string;
   };
 }
@@ -42,7 +42,7 @@ export const Hit = ({ hit }: HitProps) => {
   return (
     <PostSearchResult
       slug={hit.slug}
-      imagePath={hit.imagePath}
+      heroImagePath={hit.heroImagePath}
       title={hit.title}
       description={hit.description}
       altText={`Thumbnail for ${hit.title}`}
@@ -51,9 +51,13 @@ export const Hit = ({ hit }: HitProps) => {
   );
 };
 
-const SearchPosts = () => (
+interface SearchProps {
+  collection: string;
+}
+
+const Search = ({ collection }: SearchProps) => (
   <>
-    <InstantSearch indexName="posts" searchClient={searchClient}>
+    <InstantSearch indexName={collection} searchClient={searchClient}>
       <SearchBox className="" placeholder="Search..." />
       <Hits hitComponent={Hit} />
     </InstantSearch>
@@ -117,4 +121,4 @@ const SearchPosts = () => (
   </>
 );
 
-export default SearchPosts;
+export default Search;

@@ -17,7 +17,7 @@ const postsCollection = defineCollection({
     publishDate: z.string().optional(),
     lastUpdateDate: z.string().optional(),
     description: z.string(),
-    heroImage: z.string(),
+    heroImagePath: z.string(),
     draft: z.boolean().optional()
   }),
 });
@@ -27,12 +27,13 @@ const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    heroImage: z.string(),
+    heroImagePath: z.string(),
     projectDate: z.string().optional(),
     publishDate: z.string().optional(),
     lastUpdateDate: z.string().optional(),
     draft: z.boolean().optional(),
-    technologies: z.array(z.string()).optional()
+    technologies: z.array(z.string()).optional(),
+    hoursWorked: z.number().optional()
   }),
 });
 
