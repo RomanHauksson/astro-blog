@@ -12,15 +12,8 @@ interface Props {
   published?: boolean;
 }
 
-const {
-  imagePath,
-  slug,
-  altText,
-  title,
-  description,
-  publishDate,
-  published = true,
-} = Astro.props;
+const { imagePath, slug, altText, title, description, publishDate } =
+  Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/*.{jpg,png,webp}"
 );

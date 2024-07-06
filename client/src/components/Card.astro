@@ -5,7 +5,7 @@ interface Props {
   image?: URL;
 }
 
-const { q, a, image } = Astro.props;
+const { q, a } = Astro.props;
 ---
 
 <orbit-prompt question={q} answer={a}></orbit-prompt>
