@@ -1,8 +1,6 @@
-import React from "react";
 import TypesenseInstantsearchAdapter from "typesense-instantsearch-adapter";
-import ReactDOM from "react-dom";
 import { SearchBox, InstantSearch, Hits } from "react-instantsearch";
-import type { TypesenseInstantsearchAdapterOptions } from "typesense-instantsearch-adapter";
+// import type { TypesenseInstantsearchAdapterOptions } from "typesense-instantsearch-adapter";
 import { PostSearchResult } from "./PostSearchResult";
 
 const typesenseInstantsearchAdapter = new TypesenseInstantsearchAdapter({
