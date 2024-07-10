@@ -8,6 +8,7 @@ heroImagePath: '/hexaflexagon.webp'
 
 import YouTube from "../../../components/YouTube.astro"
 import Figure from "../../../components/Figure.astro"
+import { Image } from "astro:assets"
 import diagram from "./diagram.svg"
 import prototypes from "./prototypes.webp"
 import template from "./template-A4.svg"
@@ -24,15 +25,21 @@ I made a hexaflexagon that's color-coded for easy navigation. Each side correspo
 
 <YouTube videoId="oe77xbvPoQ0" aspectRatio={1} />
 
-<Figure image={diagram} caption="Diagram showing how to navigate my hexaflexagon. There are six colored sides, and three of the sides have two states each (labeled 1 and 2)."/>
+<Figure caption="Diagram showing how to navigate my hexaflexagon. There are six colored sides, and three of the sides have two states each (labeled 1 and 2).">
+  <Image src={diagram} alt="Diagram showing how to navigate my hexaflexagon. There are six colored sides, and three of the sides have two states each (labeled 1 and 2)." />
+</Figure>
 
-<Figure image={prototypes} caption="Other prototypes." />
+<Figure caption="Other prototypes.">
+  <Image src={prototypes} alt="Other prototypes." />
+</Figure>
 
 ## make your own
 
 1. Print out my template ([A4](/hexaflexagon/template-A4.pdf), [letter](/hexaflexagon/template-letter.pdf)) and cut out the parallelogram. Make sure to leave the white strip on the left intact.
 
-<Figure image={template} caption="Preview of the template."/>
+<Figure caption="Preview of the template.">
+  <Image src={template} alt="Preview of the template." />
+</Figure>
 
 2. Watch this video to learn how to fold it:
 

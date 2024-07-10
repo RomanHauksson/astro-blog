@@ -1,0 +1,109 @@
+---
+title: "the 2/3 rule for multi-factor authentication"
+publishDate: "2023 Feb 3"
+lastUpdateDate: "2024 Jul 9"
+description: "a strategy for multi-factor authentication that provides symmetric redundancy against both false positives and false negatives"
+heroImagePath: "/mfa.png"
+draft: false
+---
+import Figure from "../../../components/Figure.astro"
+import { Image } from "astro:assets";
+import swissCheeseModel from "./swiss_cheese_model.png"
+
+## multi-factor authentication  
+
+When you sign into an online service, you're required to provide a username to identify *who you are* and a password to prove that *you are who you say you are*. Anyone can claim that they're [`romanhauksson` on GitHub](https://github.com/romanhauksson), but only I know my GitHub password. But if a hacker breaches GitHub's servers and publishes a list of everyone's password,[^1] knowing my password is no longer proof of anything. This is the motivation behind two- or multi-factor authentication (MFA): to access my GitHub account, not only would you have to know my password, but you'd need to authenticate yourself using an additional factor, like tapping a notification on my phone.
+
+[^1]: Okay, a more realistic situation is "a hacker breaches GitHub's servers, downloads a list of everyone's *password hashes*, cracks the easiest ones, and sells the list to another hacker on some forum", but the same idea holds.
+
+<Figure>
+  <Image src={swissCheeseModel} alt="swiss cheese model" />
+</Figure>
+
+I'll use the "Swiss cheese model", shown above,[^2] to explain how multi-factor authentication provides security through redundancy. If a hacker can bypass one hole (knows my password) they have to find a hole in another layer (get me to tap the notification) in order to hack my account.
+
+[^2]: adapted from [sketchplanations](https://sketchplanations.com/the-swiss-cheese-model)
+
+## categories of factors
+
+A user can use any of three categories of factors to authenticate themself:[^3]
+
+[^3]: There are other categories like "somewhere you are", which is measured by the user's IP address at the time of login.
+
+1. A piece of information only they know, like a password or PIN.  
+2. A physical object only they possess, like a key or security token.  
+3. A physical characteristic only they display, like a fingerprint or voice pattern.
+
+Each layer should be a different category because different factors in the same category are often breached simultaneously, as if they were sliced from the same section of the cheese block so their holes were in similar places. For example, if I fell victim to a [phishing attack](https://en.wikipedia.org/wiki/Phishing), the hacker would discover all the "pieces of information only I know" in one fell swoop. Asking the hacker "what was the name of your first pet?" doesn't provide any additional security if they discovered my password and my first pet's name at the same time.  
+
+This is the same idea behind the [3-2-1 rule](https://www.hanselman.com/blog/the-computer-backup-rule-of-three) for backing up data.  
+
+> You should maintain **three** copies of anything you care about: **two** copies in different formats and **one** off-site backup.  
+
+Like with authentication, redundancy in backups is best when it is spread across different modalities. Instead of protecting against a phishing attack, however, it prevents a house fire from wiping out your baby photo collection because you never stored a copy in the cloud.
+
+## the problem with MFA
+
+While MFA makes it harder for a hacker to breach an account, *it also makes it easier for a legitimate user to get locked out*. People lose their cell phones and biometric sensors fail, all the time. And this matters because getting locked out is often *worse* than your account being hacked – I would rather let a hacker download all of the data in my Google Photos account than lose access to it permanently.  
+
+Suppose that a laptop can be accessed using three authentication factors (entering a password, confirming via an SMS text, and scanning a fingerprint), and they each have [false positive](https://en.wikipedia.org/wiki/False_positives_and_false_negatives) (hacker successfully bypasses) and [false negative](https://en.wikipedia.org/wiki/False_positives_and_false_negatives) (a user fails to pass) rates of 1%. Different multi-factor authentication schemes combining these factors have new rates, as shown by the [confusion matrices](https://en.wikipedia.org/wiki/Confusion_matrix) below.[^4]
+
+[^4]: The probability that a legitimate user is denied access is $1-0.99^n$ , where $n$ is the number of factors required. Similarly, the probability that a hacker is granted access is $0.01^n$ . This model becomes more complicated if different factors have different false positive/negative rates or are combined in different ways (for example, one scheme could require either a password or a fingerprint).
+
+<Figure caption="only password required">
+
+| user | access granted | access denied |
+| :--- | :---: | :---: |
+| legitimate | 99.00% | 1.00% |
+| hacker | 1.00% | 99.00% |
+
+</Figure>
+
+<Figure caption="password and SMS required">
+
+| user | access granted | access denied |
+| :--- | :---: | :---: |
+| legitimate | 98.01% | 1.99% |
+| hacker | 0.01% | 99.99% |
+
+</Figure>
+
+<Figure caption="password, SMS, and fingerprint required">
+
+| user | access granted | access denied |
+| :--- | :---: | :---: |
+| legitimate | ~97.03% | ~2.97% |
+| hacker | 0.0001% | 99.9999% |
+
+</Figure>
+
+With each additional factor, the chance that a hacker could successfully break in decreases exponentially (1% -> 0.01% -> 0.001%). However, the chance that a legitimate user gets locked out *increases ~linearly* (1% -> 1.99% -> ~2.97%). The probability that "something bad happens" is actually greater when three factors are required instead of two.[^5]
+
+[^5]: This explicitly assumes that any given login attempt has an equal chance of being malicious or legitimate, and it implicitly assumes that the "hacked" and "locked out" events are equally bad. Neither of these assumptions are true for most systems.
+
+## the 2/3 rule  
+
+To combat against false negatives and false positives simultaneously, I propose the "2/3 rule" for multi-factor authentication:  
+
+> A system should have in place three methods, in different modalities, for authenticating a legitimate user. The user is granted access to the system as long as they can pass at least two out of the three methods.[^6]  
+
+[^6]: Using the fourth category of authentication factors "location", one could implement a "2/4" or "3/4" strategy.
+
+This provides redundancy on both fronts: a malicious actor must crack at least two methods to breach an account, and a legitimate user must fail at least two methods to be locked out. It's like a castle with a moat and cannons to thwart invaders, *as well as* guardrails and nets to prevent the king from falling into the moat.  
+
+The confusion matrix for this combination demonstrates how the 2/3 strategy provides symmetric redundancy:
+
+<Figure caption="at least two of password, TOTP, or fingerprint">
+
+| user | access granted | access denied |
+| :--- | :---: | :---: |
+| legitimate | ~99.97% | ~0.03% |
+| hacker | ~0.03% | ~99.97% |
+
+</Figure>
+
+While the chance that a hacker breaks into a 2/3 system is higher than the original 2- or 3-factor systems (~0.03% > 0.01% > 0.0001%), the chance that a user gets locked out is dramatically lower, even more so than the 1-factor system (0.03% < 1.00%). This means that the overall chance of being hacked or locked out is lower than any other system.  
+
+## this is nothing new  
+
+That being said, this strategy is already in use; I just wanted to give a name to it. For example, if you have 2-factor authentication enabled on your Google or Facebook accounts, they will allow you to receive a code from a text message in case you don't have your [TOTP](https://en.wikipedia.org/wiki/Time-based_one-time_password) generator on you.  

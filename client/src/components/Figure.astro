@@ -1,20 +1,21 @@
 ---
-import type { ImageMetadata } from "astro";
-
 interface Props {
-  image: ImageMetadata;
   caption?: string;
+  border?: boolean;
 }
 
-const { image, caption = "" } = Astro.props;
+const { caption, border = false } = Astro.props;
 ---
 
-<figure class="self-center">
-  <img
-    src={image.src}
-    alt=""
-    class="max-h-96 w-auto rounded-lg m-auto"
-    loading="lazy"
-  />
-  <figcaption>{caption}</figcaption>
+<figure class="self-center w-full flex flex-col">
+  <div
+    class="[&>*]:max-h-[35rem] [&>*]:rounded-lg rounded-lg flex justify-center w-full overflow-hidden [&>*]:m-0"
+  >
+    <slot />
+  </div>
+  {
+    caption && (
+      <figcaption class="text-center text-zinc-300">{caption}</figcaption>
+    )
+  }
 </figure>
