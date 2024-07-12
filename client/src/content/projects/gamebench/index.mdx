@@ -4,6 +4,29 @@ projectDate: "current"
 publishDate: "2024 Jun 28"
 lastUpdateDate: "2024 Jun 28"
 description: "benchmark to test the strategic reasoning ability of large language models"
-heroImagePath: "/placeholder.jpg"
-draft: true
+heroImagePath: "/rock-em-sock-em-robots.png"
+technologies: ['Python', 'OpenAI']
+draft: false
 ---
+
+import SmallCaps from "../../../components/SmallCaps.astro"
+import results from "./results.png"
+import { Image } from "astro:assets"
+
+<SmallCaps>GameBench</SmallCaps> is a benchmark to test how good large language models are at strategic reasoning by having them play games against each other and grading the results using an Elo-like rating system. We implemented 9 different games and tested a variety of models and scaffolding methods, as well as a human baseline.
+
+Check out the project page [here](https://gamebench-website.vercel.app/), the paper [on arXiv](https://arxiv.org/abs/2406.06613), and the code [on GitHub](https://github.com/Joshuaclymer/GameBench).
+
+## results
+
+Here are the aggregated strategic reasoning scores for each tested model–scaffolding configuration, computed from match results using the Bradley–Terry model and normalized. The whiskers represent 90% confidence intervals from our bootstrapping process. `cot` stands for [Chain-of-Thought](https://arxiv.org/abs/2201.11903) and `rap` stands for [Reasoning-via-Planning](https://arxiv.org/abs/2305.14992).
+
+<Image src={results} alt="results" />
+
+## my contributions
+
+- Wrote the code for one of the benchmark tasks, a game called "Santorini". [See the code on GitHub](https://github.com/Joshuaclymer/GameBench/tree/main/games/santorini).
+- Conducted a literature review on strategic reasoning in language models and pre-existing relevant benchmarks and wrote the related works section.
+- Conducted [factor analysis](https://en.wikipedia.org/wiki/Factor_analysis) on the results to understand whether a single [*g*-factor](https://en.wikipedia.org/wiki/G_factor_(psychometrics)) could explain a significant portion of the variance between models' ability to play each game. This analysis did not end up in the final paper.
+- Helped figure out a principled way to process match results into single ratings representing models' overall performance. We ended up using the [Bradley–Terry model](https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model) to convert pairwise comparisons into performance ratings and a [bootstrapping process](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)) to aggregate them across different games.
+- Created the [project page](https://gamebench-website.vercel.app/). I made it from scratch using the [Astro web framework](https://astro.build/), basing the design off of [Eliahu Horwitz's much-used template](https://github.com/eliahuhorwitz/Academic-project-page-template), and then turned it into a [generic template](https://roman.technology/projects/research-project-page-template/) that anyone can use to make their own project pages.
