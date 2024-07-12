@@ -38,9 +38,11 @@ export const SearchResult = ({
         <h3 className="text-3xl font-bold">{title}</h3>
         <p className="text-xl text-gray-200">{description}</p>
         {technologies && (
-          <div className="flex flex-row flex-wrap gap-2">
+          <div className="flex flex-row flex-wrap gap-1 mt-2">
             {technologies.map((technology) => (
-              <p className="text-gray-400">{technology}</p>
+              <p className="text-md text-gray-400 border border-gray-700 px-2 py-0.5 rounded-full">
+                {technology}
+              </p>
             ))}
           </div>
         )}

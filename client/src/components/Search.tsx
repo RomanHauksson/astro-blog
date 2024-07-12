@@ -16,6 +16,7 @@ function Search({ collection }: SearchProps) {
       publishDate: string;
       heroImagePath: string;
       slug: string;
+      technologies: string[];
     };
   }
 
@@ -29,6 +30,7 @@ function Search({ collection }: SearchProps) {
         description={hit.description}
         altText={`Thumbnail for ${hit.title}`}
         publishDate={hit.publishDate}
+        technologies={hit.technologies}
       />
     );
   };
