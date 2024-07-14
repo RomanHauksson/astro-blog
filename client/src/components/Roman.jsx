@@ -81,7 +81,7 @@ const Roman = () => {
         <label>rotZ:  <input type="range" min="-1" max="1" step="0.05" value={rotation.z} onChange={(e) => handleRotationSliderChange('z', e.target. value)} />{rotation.z}</label>
       </div> */}
       <Canvas camera={{ position: [0, 0, 0], rotation: [0, 0, 0]}}>
-        <OrbitControls />
+        {/* <OrbitControls /> */}
         <Splat
           src="https://roman.technology/Roman.splat"
           position={[0.3, -0.43, -1.74]}
