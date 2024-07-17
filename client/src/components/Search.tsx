@@ -53,6 +53,7 @@ function Search({ collection }: SearchProps) {
     //  query_by is required.
     additionalSearchParameters: {
       query_by: "title",
+      sort_by: "publishDate:desc",
     },
   });
 
