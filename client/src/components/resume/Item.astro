@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { ItemData } from "../../types/resume";
+import Technologies from "./Technologies.astro";
 interface Props {
   data: ItemData;
 }
@@ -15,7 +16,7 @@ const {
 } = Astro.props.data;
 ---
 
-<div class="">
+<div class="flex flex-col gap-1.5">
   <h3 class="font-medium text-xl">
     {
       link ? (
@@ -37,6 +38,8 @@ const {
       </p>
     )
   }
+
+  {technologies && <Technologies technologies={technologies} />}
   {
     notes && (
       <ul class="list-disc ml-6">

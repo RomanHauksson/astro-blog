@@ -16,6 +16,13 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
+import capitalOneLogo from "../assets/capital-one-logo.png";
+import acmResearchLogo from "../assets/acm-research-logo.png";
+import jsocLogo from "../assets/jsoc-logo.png";
+import utdLogo from "../assets/utd-logo.svg";
+import babyStepsLogo from "../assets/baby-steps-logo.svg";
+import dioptraLogo from "../assets/dioptra-logo-upscaled.png";
+
 const sections: SectionData[] = [
   {
     name: "education",
@@ -24,6 +31,7 @@ const sections: SectionData[] = [
     entries: [
       {
         name: "University of Texas at Dallas",
+        image: utdLogo,
         positions: [
           {
             title: "B.S. in Computer Science",
@@ -43,7 +51,30 @@ const sections: SectionData[] = [
     icon: "material-symbols:work-outline",
     entries: [
       {
+        name: "Baby Steps",
+        image: babyStepsLogo,
+        positions: [
+          {
+            title: "Frontend Engineer",
+            location: "Remote",
+            startMonth: "Aug 2024",
+            endMonth: "Current",
+            notes: [
+              "Building web app from scratch to help users compare medical services using success rate data, for grant-backed healthcare startup with 4-person team",
+            ],
+            technologies: [
+              "Supabase",
+              "Next.js",
+              "Typescript",
+              "Tailwind CSS",
+              "Figma",
+            ],
+          },
+        ],
+      },
+      {
         name: "Capital One",
+        image: capitalOneLogo,
         positions: [
           {
             title: "Software Engineering Intern",
@@ -51,21 +82,26 @@ const sections: SectionData[] = [
             startMonth: "Jun 2023",
             endMonth: "Aug 2023",
             notes: [
-              "Created Chrome extension with React, refactored build tool to increase preview speed by 300%",
+              "Built Chrome extension with React",
               "Completed 4-week curriculum on full-stack technologies including Go, React, and Linux",
             ],
+            technologies: ["React", "Go", "Linux"],
           },
         ],
       },
       {
         name: "Joint Special Operations Command",
+        image: jsocLogo,
         positions: [
           {
             title: "Software Engineering Intern",
             startMonth: "Jun 2022",
             endMonth: "Aug 2022",
             location: "Remote",
-            notes: ["Created Python interface for internal Node API"],
+            notes: [
+              "Created Python interface for internal Node API; improved React frontend",
+            ],
+            technologies: ["Python", "React", "Node"],
           },
         ],
       },
@@ -78,6 +114,7 @@ const sections: SectionData[] = [
     entries: [
       {
         name: "Dioptra",
+        image: dioptraLogo,
         positions: [
           {
             title: "Independent Research Assistant",
@@ -87,13 +124,14 @@ const sections: SectionData[] = [
             notes: [
               "Helped create GameBench: a benchmark to test the strategic reasoning ability of large language models",
               "Coded benchmark task, conducted literature review, wrote related works section, did factor analysis",
-              "Currently researching international AI governance",
             ],
+            technologies: ["Python"],
           },
         ],
       },
       {
         name: "ACM UTD Research Program",
+        image: acmResearchLogo,
         positions: [
           {
             title: "Director",
@@ -110,7 +148,7 @@ const sections: SectionData[] = [
             endMonth: "Apr 2022",
             notes: [
               "Fine-tuned GPT-3 to generate targeted password guesses, achieved 3+ times higher accuracy than baseline, won poster presentation contest versus 5 other teams, amassed 70 stars on GitHub",
-              "Presented separately at the Hackers on Planet Earth conference to audience of 20+",
+              "Presented at the Hackers on Planet Earth conference to audience of 20+",
             ],
           },
           {
@@ -134,21 +172,34 @@ const sections: SectionData[] = [
         name: 'Demo for "I"',
         link: "https://roman.technology/projects/i-demo/",
         notes: [
-          "Designed and coded simulated trading platform for securitized income share agreements",
+          "Simulated trading platform for securitized income share agreements",
         ],
-        technologies: ["Figma", "Next", "Vercel", "Supabase", "Tailwind"],
+        technologies: [
+          "Figma",
+          "Next.js",
+          "Vercel",
+          "Supabase",
+          "Tailwind CSS",
+        ],
+      },
+      {
+        name: "Research project page template",
+        link: "https://roman.technology/projects/research-project-page-template/",
+        notes: ["Polished template for academic project pages"],
+        technologies: ["Astro", "Tailwind CSS"],
       },
       {
         name: "Manifold Markets Depth Chart Feature",
         link: "https://manifold.markets",
         notes: [
-          "Created React component to visualize prediction market depth, won 3rd place in hackathon, pushed to production on site with 800+ daily active users",
+          "React component to visualize market depth of prediction markets",
+          "Won 3rd place in hackathon and pushed to production on site with 800+ daily active users",
         ],
         technologies: ["React", "Typescript"],
       },
       {
         name: "MF FOOM",
-        link: "http://roman.technology/projects/mf-foom/",
+        link: "http://roman.technology/posts/mf-foom/",
         notes: [
           "Fine-tuned GPT-3 on the lyrics of 96 MF DOOM songs to write lyrics in his style, then cloned his voice to edit those lyrics into a song",
         ],
@@ -158,7 +209,7 @@ const sections: SectionData[] = [
         name: "Just Arrived – HackUTD VIII",
         link: "https://devpost.com/software/fresh-off-the-plane",
         notes: [
-          "Designed and coded frontend for app to help international students, won hackathon challenge",
+          "Frontend for mobile app to help international students, won hackathon challenge",
         ],
         technologies: ["Flutter"],
       },
@@ -220,7 +271,7 @@ const sections: SectionData[] = [
   <body class="flex flex-col gap-6 bg-slate-900 text-white">
     <Header />
     <main
-      class="grid sm:gap-x-10 gap-y-6 grid-rows-[0fr_0fr] grid-rows-2 max-w-[55rem] w-full m-auto px-6"
+      class="grid sm:gap-x-10 gap-y-6 grid-rows-[0fr_0fr] grid-rows-2 max-w-[70rem] w-full m-auto px-6"
     >
       <h1 class="row-start-1 col-start-2 font-bold text-5xl">resume</h1>
       <div class="hidden sm:block row-start-2 col-start-1 gap-2">
@@ -230,17 +281,19 @@ const sections: SectionData[] = [
           >
             contents
           </h2>
-          {
-            sections.map((data: SectionData) => (
-              <a
-                class="text-white/80 hover:text-white flex flex-row items-center gap-2"
-                href={`#${data.name}`}
-              >
-                <Icon name={data.icon} />
-                <span>{data.name}</span>
-              </a>
-            ))
-          }
+          <div class="flex flex-col gap-4">
+            {
+              sections.map((data: SectionData) => (
+                <a
+                  class="text-white/80 hover:text-white flex flex-row items-center gap-2"
+                  href={`#${data.name}`}
+                >
+                  <Icon class="shrink-0 grow-0" name={data.icon} />
+                  <span class="leading-none">{data.name}</span>
+                </a>
+              ))
+            }
+          </div>
         </div>
       </div>
       <div class="row-start-2 col-start-2 flex flex-col gap-6">

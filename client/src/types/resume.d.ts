@@ -10,6 +10,7 @@ type OrganizationData = {
   location?: string;
   link?: string;
   positions: PositionData[];
+  image?: ImageMetadata;
 }
 
 type PositionData = {
