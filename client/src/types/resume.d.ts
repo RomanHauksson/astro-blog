@@ -3,7 +3,7 @@ type SectionData = {
   icon?: string;
   type: "organizations" | "items";
   entries: OrganizationData[] | ItemData[];
-}
+};
 
 type OrganizationData = {
   name: string;
@@ -11,7 +11,7 @@ type OrganizationData = {
   link?: string;
   positions: PositionData[];
   image?: ImageMetadata;
-}
+};
 
 type PositionData = {
   title: string;
@@ -21,7 +21,7 @@ type PositionData = {
   location?: string;
   notes?: string[];
   technologies?: string[];
-}
+};
 
 type ItemData = {
   name: string;
@@ -31,6 +31,6 @@ type ItemData = {
   endMonth?: string;
   notes?: string[];
   technologies?: string[];
-}
+};
 
 export { SectionData, OrganizationData, PositionData, ItemData };
