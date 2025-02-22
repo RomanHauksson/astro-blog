@@ -19,7 +19,11 @@ const MobileSplat = () => {
       ref={splatRef}
       src="https://roman.technology/Roman.splat"
       position={[0.3, -0.43, -1.74]}
-      rotation={[0.15 + ((Math.sin(rotation) + 1) / 2) * 0.4, -0.2 + ((Math.cos(rotation) + 1) / 2) * 0.4, 0]}
+      rotation={[
+        0.15 + ((Math.sin(rotation) + 1) / 2) * 0.4,
+        -0.2 + ((Math.cos(rotation) + 1) / 2) * 0.4,
+        0,
+      ]}
     />
   );
 };
