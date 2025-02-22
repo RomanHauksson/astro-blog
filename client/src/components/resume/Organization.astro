@@ -9,9 +9,14 @@ interface Props {
 const { name, image, link, positions } = Astro.props.data;
 ---
 
-<div class="flex flex-row gap-4">
-  {image && <Image class="rounded-lg w-16 h-16" src={image} alt={name} />}
-  <div class="flex flex-col gap-2">
+<div
+  class="flex flex-row gap-4"
+  style={{
+    marginBlockStart: "1em",
+  }}
+>
+  {image && <Image class="rounded-full w-16 h-16" src={image} alt={name} />}
+  <div>
     <h3 class="font-medium text-2xl">
       {
         link ? (
