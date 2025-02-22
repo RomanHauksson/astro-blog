@@ -6,16 +6,10 @@ import ActionButton from "../components/ActionButton.astro";
 ---
 
 <Page title={SITE_TITLE} description={SITE_DESCRIPTION} showTitle={false}>
-  <section class="flex flex-col gap-6 items-center">
-    <section>
-      <h1 class="font-bold text-6xl max-w-[40rem] text-center">
-        Hi, my name's Roman!
-      </h1>
-    </section>
-    <section>
-      <Roman client:load />
-    </section>
-    <section class="flex flex-col gap-6 items-center max-w-[40rem] text-2xl">
+  <div class="max-w-[40rem] w-full m-auto">
+    <h1 class="font-bold text-6xl text-center w-full">Hi, my name's Roman!</h1>
+    <Roman client:load />
+    <div class="flex flex-col gap-6 text-2xl items-stretch w-full">
       <p>
         I'm a software engineer and researcher passionate about positively
         shaping the future of emerging technology, with a focus on the
@@ -28,6 +22,6 @@ import ActionButton from "../components/ActionButton.astro";
         risks from advanced AI systems and otherwise aligning them with human
         values.
       </p>
-    </section>
-  </section>
+    </div>
+  </div>
 </Page>
