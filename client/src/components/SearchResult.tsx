@@ -30,7 +30,7 @@ export const SearchResult = ({
           src={heroImagePath}
           alt={altText}
           loading="eager"
-          className="max-w-full rounded-lg"
+          className="max-w-full rounded-lg w-full aspect-[4/3]"
         />
       </div>
       <div className="flex flex-col shrink grow basis-[15rem]">

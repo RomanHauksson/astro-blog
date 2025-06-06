@@ -1,0 +1,16 @@
+---
+interface Props {
+  technologies: string[];
+}
+const { technologies } = Astro.props;
+---
+
+<div class="flex flex-row gap-2 flex-wrap">
+  {
+    technologies.map((technology) => (
+      <span class="text-sm text-gray-300 border border-gray-500 px-2 py-0.5 rounded-full">
+        {technology}
+      </span>
+    ))
+  }
+</div>

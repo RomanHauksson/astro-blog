@@ -38,16 +38,15 @@ if (!images[updatedHeroImagePath])
     crossorigin="anonymous"></script>
 
   <article>
-    <div class="hero-image rounded-lg overflow-hidden">
+    <div class="rounded-lg overflow-hidden w-full">
       {
         heroImagePath && (
           <Image
-            width={1020}
-            height={510}
             src={images[updatedHeroImagePath]()}
             quality="max"
             loading="eager"
             alt=""
+            class="aspect-[4/3] w-full"
           />
         )
       }

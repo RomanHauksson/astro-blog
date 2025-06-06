@@ -1,0 +1,80 @@
+---
+import Page from "../layouts/Page.astro";
+---
+
+<Page
+  showTitle={false}
+  title={"now"}
+  description={"What Roman is doing right now."}
+>
+  <section
+    class="prose prose-slate prose-invert prose-lg prose-a:no-underline prose-a:font-normal prose-a:bg-gray-700 prose-a:rounded prose-a:px-1 prose-a:py-0.5 prose-a:text-white hover:prose-a:bg-gray-500 active:prose-a:bg-gray-700 before:prose-code:content-none after:prose-code:content-none before:prose-p:content-none after:prose-p:content-none"
+  >
+    <h1>what i&apos;m doing right now</h1>
+    <p>
+      Last updated 2025-05-20. See <a href="https://nownownow.com/about"
+        >what is a "now page"?</a
+      >.
+    </p>
+    <ul>
+      <li>
+        On summer break from university. My last semester will be this fall.
+      </li>
+      <li>
+        Working as the frontend engineer for Baby Steps, a startup that helps
+        prospective patients decide which IVF clinic to choose using a birth
+        rate prediction model.
+      </li>
+      <li>
+        Considering the following project ideas. If you're interested in
+        collaborating with me on any of them, please reach out or book a call
+        with me!
+        <ul>
+          <li>
+            <b
+              >A benchmark that uses a simulated attack–defense-style CTF to
+              test how good LLMs are at red teaming and blue teaming.</b
+            > This could be used to track the offense-defense balance of LLM-assisted
+            cybersecurity over time, and this style of benchmark (like <a
+              href="/projects/gamebench">GameBench</a
+            >) is less susceptible to saturation because it's comparative: it
+            grades each model using something like an Elo score, so it can
+            retain precision well above superhuman performance as long as you
+            have another model that can compete against it. I'm hesitant about
+            this project because capability researchers might use it as a
+            feedback signal to improve LLMs' hacking abilities.
+          </li>
+          <li>
+            <b>A startup selling services to autonomous AI agents themselves.</b
+            > I think agents will become an increasingly large part of the economy
+            and eventually eclipse human economic activity. This is a totally new
+            customer base. What services will they want to buy that current companies
+            – who only focus on their human audience – can't provide? I think this
+            is a promising idea, but executing it well would probably accelerate
+            AI progress, decreasing the chance that society makes the post-superintelligence
+            transition wisely. I think someone else will also attempt this anyway,
+            so maybe i could counterfactually donate more of the profits to AI safety
+            research than my competitors would or use the company's position as a
+            lever to influence the development and deployment of AI agents for good?
+          </li>
+          <li>
+            <b
+              >Software that uses AI to dramatically accelerate the speed at
+              which people can learn.</b
+            >
+            <a href="https://mathacademy.com/">Math Academy</a> is software that
+            uses algorithms based on the science of learning to help students learn
+            and retain math as efficiently as possible. What if we could bring the
+            same efficiency in learning to any arbitrary subject? My vision is something
+            akin to an LLM-based tutor chatbot with a model of all of the things
+            you know and how they relate to each other, who challenges you to recall
+            and explain concepts you've learned in previous study sessions based
+            on a spaced repetition scheduler. How this would fit into my life goal
+            of making AI go well i haven't figured out yet. Something something differentially
+            accelerating human cognition.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</Page>

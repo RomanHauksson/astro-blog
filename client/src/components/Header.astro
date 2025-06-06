@@ -1,7 +1,5 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import ActionButton from "./ActionButton.astro";
-// import ThemeToggle from "./ThemeToggle.tsx";
 import { SITE_TITLE } from "../consts";
 ---
 
@@ -13,11 +11,10 @@ import { SITE_TITLE } from "../consts";
       <a href="/">{SITE_TITLE}</a>
     </h1>
     <div class="flex flex-row gap-4">
-      <!-- <ThemeToggle client:load /> -->
       <HeaderLink href="/posts">posts</HeaderLink>
       <HeaderLink href="/projects">projects</HeaderLink>
       <HeaderLink href="/resume">resume</HeaderLink>
-      <HeaderLink href="/about">about</HeaderLink>
+      <HeaderLink href="/now">now</HeaderLink>
     </div>
   </nav>
 </header>
