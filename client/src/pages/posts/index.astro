@@ -4,7 +4,16 @@ import { getCollection } from "astro:content";
 
 // Get all posts (including migrated projects)
 const allPosts = await getCollection("posts");
-allPosts.sort(
+
+console.log(import.meta.env.MODE);
+
+// Filter out drafts in production and preview environments on Vercel
+const filteredPosts =
+  import.meta.env.MODE === "development"
+    ? allPosts
+    : allPosts.filter((post) => !post.data.draft);
+
+filteredPosts.sort(
   (a, b) =>
     new Date(
       b.data.publishDate || b.data.projectDate || "1970-01-01"
@@ -16,7 +25,7 @@ allPosts.sort(
 <Page title={"posts"} description={"Roman Hauksson's posts and projects."}>
   <div class="space-y-4">
     {
-      allPosts.map((post) => (
+      filteredPosts.map((post) => (
         <a
           href={`/posts/${post.slug}/`}
           class="flex flex-row flex-wrap gap-4 hover:bg-slate-800 rounded-lg p-4 transition-all duration-100 border border-slate-700 block"
