@@ -1,18 +1,52 @@
 ---
 import Page from "../../layouts/Page.astro";
-// import { getCollection } from "astro:content";
-import Search from "../../components/Search.tsx";
+import { getCollection } from "astro:content";
 
-// const publishedPosts = await getCollection("posts", ({ data }) => {
-//   return data.draft !== true;
-// });
-// publishedPosts.sort(
-//   (a, b) =>
-//     new Date(b.data.publishDate).getTime() -
-//     new Date(a.data.publishDate).getTime()
-// );
+// Get all posts (including migrated projects)
+const allPosts = await getCollection("posts");
+allPosts.sort(
+  (a, b) =>
+    new Date(
+      b.data.publishDate || b.data.projectDate || "1970-01-01"
+    ).getTime() -
+    new Date(a.data.publishDate || a.data.projectDate || "1970-01-01").getTime()
+);
 ---
 
-<Page title={"posts"} description={"Roman Hauksson's posts."}>
-  <Search collection="posts" client:only="react" />
+<Page title={"posts"} description={"Roman Hauksson's posts and projects."}>
+  <div class="space-y-4">
+    {
+      allPosts.map((post) => (
+        <a
+          href={`/posts/${post.slug}/`}
+          class="flex flex-row flex-wrap gap-4 hover:bg-slate-800 rounded-lg p-4 transition-all duration-100 border border-slate-700 block"
+        >
+          <div class="basis-[10rem] grow">
+            <img
+              src={post.data.heroImagePath}
+              alt={post.data.title}
+              loading="lazy"
+              class="max-w-full rounded-lg w-full aspect-[4/3] object-cover"
+            />
+          </div>
+          <div class="flex flex-col shrink grow basis-[15rem]">
+            <p class="text-gray-400">
+              {post.data.publishDate || post.data.projectDate || "No date"}
+            </p>
+            <h3 class="text-3xl font-bold">{post.data.title}</h3>
+            <p class="text-xl text-gray-200">{post.data.description}</p>
+            {post.data.technologies && (
+              <div class="flex flex-row flex-wrap gap-1 mt-2">
+                {post.data.technologies.map((technology: string) => (
+                  <p class="text-md text-gray-400 border border-gray-700 px-2 py-0.5 rounded-full">
+                    {technology}
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+        </a>
+      ))
+    }
+  </div>
 </Page>

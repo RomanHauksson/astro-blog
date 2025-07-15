@@ -1,8 +1,4 @@
 ---
-import Page from "../../layouts/Page.astro";
-import Search from "../../components/Search.tsx";
+// Redirect /projects/ to /posts/
+return Astro.redirect("/posts/");
 ---
-
-<Page title={"projects"} description={"Roman Hauksson's projects."}>
-  <Search collection="projects" client:only="react" />
-</Page>
