@@ -2,7 +2,6 @@
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Page from "../layouts/Page.astro";
 import Roman from "../components/Roman";
-import ActionButton from "../components/ActionButton.astro";
 ---
 
 <Page title={SITE_TITLE} description={SITE_DESCRIPTION} showTitle={false}>
@@ -20,9 +19,11 @@ import ActionButton from "../components/ActionButton.astro";
       <p>
         I'm currently in my 4th year studying Computer Science at the University
         of Texas at Dallas under a National Merit Scholarship. I also work as a
-        frontend engineer at Baby Steps, building a website to help prospective
-        patients decide which IVF clinic to go to using a success rate
-        prediction model.
+        software engineer at <a href="https://www.makebabysteps.com"
+          >Baby Steps</a
+        >, helping prospective parents decide which IVF clinic to go to using a
+        model that predicts their chance of a successful birth at each of the
+        clinics in the US.
       </p>
       <p>
         Some of my personal interests include <a
@@ -30,11 +31,11 @@ import ActionButton from "../components/ActionButton.astro";
           >biohacking</a
         >, <a
           href="https://www.strongerbyscience.com/complete-strength-training-guide/"
-          >science-based weightlifting</a
+          >science-based bodybuilding</a
         >, <a
           href="https://matthiasfrank.de/personal-knowledge-management-for-beginners/"
           >personal knowledge management</a
-        >, and meditation.
+        >, meditation, and analytic philosophy.
       </p>
       <h2>contact</h2>
       <p>
