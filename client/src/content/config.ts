@@ -26,7 +26,16 @@ const postsCollection = defineCollection({
   }),
 });
 
+const talksCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    publishDate: z.string().optional(),
+  }),
+});
+
 // 3. Export a single `collections` object to register your collection(s)
 export const collections = {
   posts: postsCollection,
+  talks: talksCollection,
 };
