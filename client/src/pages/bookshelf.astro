@@ -8,90 +8,111 @@ const { currentlyReading, read, partiallyRead } = await getBooksByStatus();
 
 <Page title="bookshelf" description="Books I've read">
   <div class="w-full space-y-8">
-    <div class="prose prose-slate prose-invert prose-lg prose-a:no-underline prose-a:font-normal prose-a:bg-gray-700 prose-a:rounded prose-a:px-1 prose-a:py-0.5 prose-a:text-white hover:prose-a:bg-gray-500 active:prose-a:bg-gray-700">
+    <div
+      class="prose prose-slate prose-invert prose-lg prose-a:no-underline prose-a:font-normal prose-a:bg-gray-700 prose-a:rounded prose-a:px-1 prose-a:py-0.5 prose-a:text-white hover:prose-a:bg-gray-500 active:prose-a:bg-gray-700"
+    >
       <p>
-        See my full reading list on <a href="https://hardcover.app/@RomanHauksson"
-          >Hardcover</a
+        I enjoy reading nonfiction, mostly self-development books and academic
+        handbooks (especially analytic philosophy). See my full reading list on <a
+          href="https://hardcover.app/@RomanHauksson">Hardcover</a
         >.
       </p>
     </div>
 
-    {currentlyReading.length > 0 && (
-      <section>
-        <h2 class="text-2xl font-bold mb-4 text-white">currently reading</h2>
-        <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr))">
-          {currentlyReading.map((userBook) => (
-            userBook.book.default_cover_edition?.image?.url && (
-              <a
-                href={`https://hardcover.app/books/${userBook.book.slug}`}
-                class="block hover:scale-105 transition-transform duration-200"
-                title={userBook.book.title}
-              >
-                <Image
-                  src={userBook.book.default_cover_edition.image.url}
-                  alt={`Book cover for ${userBook.book.title}`}
-                  width={150}
-                  height={225}
-                  class="rounded-lg w-full h-auto aspect-[2/3] object-cover shadow-lg"
-                  loading="lazy"
-                />
-              </a>
-            )
-          ))}
-        </div>
-      </section>
-    )}
+    {
+      currentlyReading.length > 0 && (
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-white">currently reading</h2>
+          <div
+            class="grid gap-4"
+            style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr))"
+          >
+            {currentlyReading.map(
+              (userBook) =>
+                userBook.book.default_cover_edition?.image?.url && (
+                  <a
+                    href={`https://hardcover.app/books/${userBook.book.slug}`}
+                    class="block hover:scale-105 transition-transform duration-200"
+                    title={userBook.book.title}
+                  >
+                    <Image
+                      src={userBook.book.default_cover_edition.image.url}
+                      alt={`Book cover for ${userBook.book.title}`}
+                      width={150}
+                      height={225}
+                      class="rounded-lg w-full h-auto aspect-[2/3] object-cover shadow-lg"
+                      loading="lazy"
+                    />
+                  </a>
+                )
+            )}
+          </div>
+        </section>
+      )
+    }
 
-    {read.length > 0 && (
-      <section>
-        <h2 class="text-2xl font-bold mb-4 text-white">read</h2>
-        <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr))">
-          {read.map((userBook) => (
-            userBook.book.default_cover_edition?.image?.url && (
-              <a
-                href={`https://hardcover.app/books/${userBook.book.slug}`}
-                class="block hover:scale-105 transition-transform duration-200"
-                title={userBook.book.title}
-              >
-                <Image
-                  src={userBook.book.default_cover_edition.image.url}
-                  alt={`Book cover for ${userBook.book.title}`}
-                  width={150}
-                  height={225}
-                  class="rounded-lg w-full h-auto aspect-[2/3] object-cover shadow-lg"
-                  loading="lazy"
-                />
-              </a>
-            )
-          ))}
-        </div>
-      </section>
-    )}
+    {
+      read.length > 0 && (
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-white">read</h2>
+          <div
+            class="grid gap-4"
+            style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr))"
+          >
+            {read.map(
+              (userBook) =>
+                userBook.book.default_cover_edition?.image?.url && (
+                  <a
+                    href={`https://hardcover.app/books/${userBook.book.slug}`}
+                    class="block hover:scale-105 transition-transform duration-200"
+                    title={userBook.book.title}
+                  >
+                    <Image
+                      src={userBook.book.default_cover_edition.image.url}
+                      alt={`Book cover for ${userBook.book.title}`}
+                      width={150}
+                      height={225}
+                      class="rounded-lg w-full h-auto aspect-[2/3] object-cover shadow-lg"
+                      loading="lazy"
+                    />
+                  </a>
+                )
+            )}
+          </div>
+        </section>
+      )
+    }
 
-    {partiallyRead.length > 0 && (
-      <section>
-        <h2 class="text-2xl font-bold mb-4 text-white">partially read</h2>
-        <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr))">
-          {partiallyRead.map((userBook) => (
-            userBook.book.default_cover_edition?.image?.url && (
-              <a
-                href={`https://hardcover.app/books/${userBook.book.slug}`}
-                class="block hover:scale-105 transition-transform duration-200"
-                title={userBook.book.title}
-              >
-                <Image
-                  src={userBook.book.default_cover_edition.image.url}
-                  alt={`Book cover for ${userBook.book.title}`}
-                  width={150}
-                  height={225}
-                  class="rounded-lg w-full h-auto aspect-[2/3] object-cover shadow-lg opacity-75 hover:opacity-100"
-                  loading="lazy"
-                />
-              </a>
-            )
-          ))}
-        </div>
-      </section>
-    )}
+    {
+      partiallyRead.length > 0 && (
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-white">partially read</h2>
+          <div
+            class="grid gap-4"
+            style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr))"
+          >
+            {partiallyRead.map(
+              (userBook) =>
+                userBook.book.default_cover_edition?.image?.url && (
+                  <a
+                    href={`https://hardcover.app/books/${userBook.book.slug}`}
+                    class="block hover:scale-105 transition-transform duration-200"
+                    title={userBook.book.title}
+                  >
+                    <Image
+                      src={userBook.book.default_cover_edition.image.url}
+                      alt={`Book cover for ${userBook.book.title}`}
+                      width={150}
+                      height={225}
+                      class="rounded-lg w-full h-auto aspect-[2/3] object-cover shadow-lg opacity-75 hover:opacity-100"
+                      loading="lazy"
+                    />
+                  </a>
+                )
+            )}
+          </div>
+        </section>
+      )
+    }
   </div>
 </Page>
