@@ -1,7 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
 import type { OrganizationData, PositionData } from "../../types/resume";
 import Technologies from "./Technologies.astro";
+import TextLink from "./TextLink.astro";
 import { Image } from "astro:assets";
 interface Props {
   data: OrganizationData;
@@ -18,16 +18,7 @@ const { name, image, link, positions } = Astro.props.data;
   {image && <Image class="rounded-full w-16 h-16" src={image} alt={name} />}
   <div>
     <h3 class="font-medium text-2xl">
-      {
-        link ? (
-          <a class="text-indigo-300 hover:text-indigo-100" href={link}>
-            {name}
-            <Icon class="inline-block" name="line-md:external-link" />
-          </a>
-        ) : (
-          name
-        )
-      }
+      {link ? <TextLink href={link}>{name}</TextLink> : name}
     </h3>
     <div class="flex flex-col gap-4">
       {
