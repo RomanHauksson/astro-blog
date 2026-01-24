@@ -16,13 +16,18 @@ const filteredPosts =
 filteredPosts.sort(
   (a, b) =>
     new Date(
-      b.data.publishDate || b.data.projectDate || "1970-01-01"
+      b.data.publishDate || b.data.projectDate || "1970-01-01",
     ).getTime() -
-    new Date(a.data.publishDate || a.data.projectDate || "1970-01-01").getTime()
+    new Date(
+      a.data.publishDate || a.data.projectDate || "1970-01-01",
+    ).getTime(),
 );
 ---
 
-<Page title={"posts"} description={"Roman Hauksson's blog posts and projects."}>
+<Page
+  title={"posts"}
+  description={"Roman Hauksson-Neill's blog posts and projects."}
+>
   <div class="space-y-4">
     {
       filteredPosts.map((post) => (
