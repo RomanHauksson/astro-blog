@@ -14,7 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is an Astro-based personal blog with a client/server monorepo structure:
 
 ### Client (`/client/`)
-- **Framework**: Astro 4 with React, Svelte, and Tailwind CSS
+- **Framework**: Astro 4 with React, and Tailwind CSS
 - **Content**: MDX-based blog posts in `src/content/posts/`
 - **Components**: Mix of Astro components and React components for interactive features
 - **Styling**: Tailwind CSS with custom font (Space Grotesk Variable)
