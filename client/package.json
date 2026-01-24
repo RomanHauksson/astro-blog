@@ -45,7 +45,6 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.7",
-    "@iconify-json/line-md": "^1.1.37",
     "@iconify-json/material-symbols": "^1.1.73",
     "@tailwindcss/typography": "^0.5.10",
     "typescript": "^5.9.2",
