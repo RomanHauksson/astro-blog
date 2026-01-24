@@ -61,14 +61,15 @@ const sections: SectionData[] = [
             startMonth: "Aug 2024",
             endMonth: "Current",
             notes: [
-              "Building web app to help prospective parents decide which IVF clinic to go to with a model that predicts their chance of a successful birth at each of the clinics in the US, with 3-person team",
+              "Building web app to help prospective parents decide which IVF clinic to go to, using a personalized success rate forecasting model, with 3-person team",
               "Backed by Astral Codex Ten Grants and a private investor",
             ],
             technologies: [
-              "Supabase",
-              "Next.js",
-              "Typescript",
+              "React (Next.js)",
+              "TypeScript",
+              "PostgreSQL (Supabase, Neon)",
               "Tailwind CSS",
+              "Stripe",
               "Figma",
             ],
           },
@@ -87,7 +88,7 @@ const sections: SectionData[] = [
               "Built Chrome extension with React",
               "Completed 4-week curriculum on full-stack technologies including Go, React, and Linux",
             ],
-            technologies: ["React", "Go", "Linux"],
+            technologies: ["React", "Go"],
           },
         ],
       },
@@ -125,7 +126,8 @@ const sections: SectionData[] = [
             location: "Remote",
             notes: [
               "Helped create GameBench, an LLM benchmark for strategic reasoning ability",
-              "Coded benchmark task, conducted literature review, wrote related works section, ran factor analysis, and presented at the Language Gamification Workshop at NeurIPS 2024",
+              "Coded benchmark task, conducted literature review, wrote related work section, ran factor analysis, and presented at the Language Gamification Workshop at NeurIPS 2024",
+              "Researched the Wassenaar Arrangement as inspiration for international AI governance",
             ],
             technologies: ["Python"],
           },
@@ -136,29 +138,15 @@ const sections: SectionData[] = [
         image: acmResearchLogo,
         positions: [
           {
-            title: "Director",
-            startMonth: "May 2022",
-            endMonth: "Dec 2022",
-            notes: [
-              "Youngest director of semester-long undergraduate research program with 15% admission rate",
-              "Managed 4 teams of 6 students each, hosted poster presentation event for 50+ attendees",
-            ],
-          },
-          {
-            title: "Team Lead",
-            startMonth: "Dec 2021",
-            endMonth: "Apr 2022",
-            notes: [
-              "Fine-tuned GPT-3 to generate targeted password guesses, achieved 3+ times higher accuracy than baseline, won poster presentation contest versus 5 other teams, 70 stars on GitHub",
-              "Presented at the Hackers on Planet Earth conference in NYC to audience of 20+",
-            ],
-          },
-          {
-            title: "Assistant",
+            title: "Research Assistant → Team Lead → Director",
             startMonth: "Sep 2021",
-            endMonth: "Nov 2021",
+            endMonth: "Dec 2022",
+            technologies: ["Python"],
             notes: [
               "Trained LSTM model with team of 4, won poster presentation contest versus 5 other teams",
+              "Fine-tuned GPT-3 to generate targeted password guesses, achieved 3+ times higher accuracy than baseline, won poster presentation contest versus 5 other teams",
+              "Presented research at Hackers on Planet Earth conference in NYC to audience of 20+",
+              "Became youngest director of semester-long undergraduate research program with 15% admission rate; managed 4 teams of 6 students each and hosted poster presentation event for 50+ attendees",
             ],
           },
         ],
@@ -166,26 +154,61 @@ const sections: SectionData[] = [
     ] as OrganizationData[],
   },
   {
+    name: "competitions",
+    type: "items",
+    icon: "material-symbols:trophy-outline",
+    entries: [
+      {
+        name: "HackRice 2025: Warp Challenge winner, TwelveLabs challenge 2nd place",
+        link: "https://devpost.com/software/touchgrass-zmtngr",
+        startMonth: "Sep 2025",
+        notes: [
+          "Built TouchGrass, a web app to help programmers avoid burning out, with team of 3",
+        ],
+        location: "Houston, TX",
+        technologies: ["React", "TypeScript", "Convex"],
+      },
+      {
+        name: "Manifold Markets Hackathon: 3rd place",
+        link: "https://github.com/manifoldmarkets/manifold/commit/5474baee82ba6cba8befe06da42e3b7f6cad5e7b",
+        notes: [
+          "Built a React component to visualize the market depth of prediction markets",
+          "Helped push to production the next day, on a site with 800+ daily active users",
+        ],
+        location: "Berkeley, CA",
+        startMonth: "Mar 2023",
+        technologies: ["React", "TypeScript"],
+      },
+      {
+        name: "TexSAW 2022 Capture The Flag competition: 1st place",
+        link: "https://csi.utdallas.edu/events/texsaw-2022/",
+        location: "Dallas, TX",
+        startMonth: "Apr 2022",
+        notes: ["With team of 2, versus 10 other teams"],
+      },
+      {
+        name: "HackUTD VIII: Project Nebula challenge winner",
+        startMonth: "Nov 2021",
+        link: "https://devpost.com/software/fresh-off-the-plane",
+        notes: ["Built mobile app for international students, with team of 3"],
+        technologies: ["Flutter"],
+        location: "Dallas, TX",
+      },
+    ] as ItemData[],
+  },
+  {
     name: "projects",
     type: "items",
     icon: "material-symbols:rocket-launch-outline",
     entries: [
       {
-        name: "Machine learning project page Astro template",
+        name: "Research Project Page Template",
         link: "https://roman.technology/posts/research-project-page-template/",
         notes: [
-          "380+ GitHub stars, powering >40 live project pages for researchers from NVIDIA Research, Google, etc.",
+          "Open-source website template and component library to help researchers present their papers",
+          "400+ GitHub stars, used by hundreds of labs, including teams at ByteDance Seed, NVIDIA Research, MIT CSAIL, Oxford, Princeton, and Imperial College London",
         ],
-        technologies: ["Astro", "Tailwind CSS"],
-      },
-      {
-        name: "Manifold Markets Depth Chart Feature",
-        link: "https://github.com/manifoldmarkets/manifold/commit/5474baee82ba6cba8befe06da42e3b7f6cad5e7b",
-        notes: [
-          "React component to visualize market depth of prediction markets",
-          "Won 3rd place in hackathon and pushed to production on site with 800+ daily active users",
-        ],
-        technologies: ["React", "Typescript"],
+        technologies: ["React", "TypeScript", "Astro", "Tailwind CSS"],
       },
       {
         name: 'Demo for "I"',
@@ -194,36 +217,20 @@ const sections: SectionData[] = [
           "Simulated trading platform for securitized income share agreements",
         ],
         technologies: [
-          "Figma",
-          "Next.js",
-          "Vercel",
-          "Supabase",
+          "React (Next.js)",
+          "TypeScript",
+          "PostgreSQL (Supabase)",
           "Tailwind CSS",
+          "Figma",
         ],
       },
       {
-        name: "Your life (before the singularity) in weeks",
+        name: "Your Life (Before the Singularity) in Weeks",
         link: "https://your-life.roman.technology/",
         notes: [
-          "Visualization of how much of your pre-AGI life you've lived, using the Metaculus API",
+          "Simple web app showing you how much of your pre-AGI life you've lived, using the Metaculus API",
         ],
-        technologies: ["Next.js"],
-      },
-      {
-        name: "MF FOOM",
-        link: "http://roman.technology/posts/mf-foom/",
-        notes: [
-          "Fine-tuned GPT-3 on the lyrics of 96 MF DOOM songs to write lyrics in his style, then cloned his voice to edit those lyrics into a song",
-        ],
-        technologies: ["Python", "GPT-3", "ElevenLabs"],
-      },
-      {
-        name: "Just Arrived – HackUTD VIII",
-        link: "https://devpost.com/software/fresh-off-the-plane",
-        notes: [
-          "Frontend for mobile app to help international students, won Project Nebula Challenge at HackUTD VIII",
-        ],
-        technologies: ["Flutter"],
+        technologies: ["React (Next.js)"],
       },
     ] as ItemData[],
   },
@@ -237,7 +244,7 @@ const sections: SectionData[] = [
         location: "Berkeley, CA",
         startMonth: "Nov 2023",
         notes: [
-          "Studied existential risks from AI and bioengineered pathogens.",
+          "Studied existential risks from AI and bioengineered pathogens",
         ],
       },
       {
@@ -245,11 +252,11 @@ const sections: SectionData[] = [
         location: "Cambridge, UK",
         startMonth: "Aug 2023",
         notes: [
-          "Studied AI and cognition at 10-day rationalist camp for mathematically talented students (2.5% acceptance rate)",
+          "Studied AI and cognition at 10-day camp for mathematically talented students (2.5% acceptance rate)",
         ],
       },
       {
-        name: "AI safety workshop",
+        name: "AI Safety Weekend Workshop",
         location: "Berkeley, CA",
         startMonth: "Nov 2022",
       },
@@ -258,14 +265,6 @@ const sections: SectionData[] = [
         location: "Remote",
         startMonth: "Oct 2022",
         endMonth: "Nov 2022",
-      },
-      {
-        name: "TexSAW 2022 Capture The Flag Winner",
-        location: "Dallas, TX",
-        startMonth: "Apr 2022",
-        notes: [
-          "Won cybersecurity CTF competition with a partner against 10+ teams",
-        ],
       },
       {
         name: "CodePath Cybersecurity course",
