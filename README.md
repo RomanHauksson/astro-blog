@@ -6,16 +6,16 @@ This is the repository for my personal website and blog. I made it from scratch 
 
 | technology                               | purpose                               |
 | :--------------------------------------- | :------------------------------------ |
-| [Astro](https://astro.build/)            | static site generator / web framework |
-| [React](https://reactjs.org/)            | reactive components                   |
+| [Astro](https://astro.build/)            | static site generator |
+| [React](https://reactjs.org/)            | interactive components                   |
 | [Typescript](https://www.typescriptlang.org/) | scripting |
 | [Tailwind CSS](https://tailwindcss.com/) | styling                               |
-| [MDX](https://mdxjs.com/)                | writing documents                     |
+| [MDX](https://mdxjs.com/)                | content authoring                     |
 | [Vercel](https://vercel.com/)            | frontend hosting                      |
 | [Vimeo](https://vimeo.com/)              | video hosting                         |
 | [PostHog](https://posthog.com/)          | analytics                             |
 | [Docker](https://www.docker.com/) | backend services |
-| [Typesense](https://typesense.org/) | full text search |
+| [Typesense](https://typesense.org/) | full text search (removed) |
 
 ## usage
 
