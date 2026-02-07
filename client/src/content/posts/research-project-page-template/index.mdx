@@ -1,20 +1,35 @@
 ---
 title: 'research project page template'
-description: 'simple, professional website template for your academic research paper'
+description: 'website template and component library to help researchers present their papers'
 publishDate: '2024-07-01'
-lastUpdateDate: '2024-07-01'
+lastUpdateDate: '2026-01-24'
 heroImagePath: '/research-project-page-template.png'
 draft: false
 technologies: ['Astro', 'HTML', 'Typescript', 'Tailwind CSS', 'MDX']
 ---
 
-I made a template for a simple, professional project page for academic research papers. See a live demo of the template [here](https://research-template.roman.technology/) and the code and usage instructions [here](https://github.com/romanhauksson/academic-project-astro-template).
+I made a website template and component library to help researchers build project pages for their papers, based on the design from the original [Nerfies page](https://nerfies.github.io/). Instead of manually editing an HTML file, they can author the page's content in Markdown, then deploy it with GitHub Pages. [See a live demo of the template](https://research-template.roman.technology). Used by hundreds of teams.
 
 ## features
 
-- Built with [Astro](https://astro.build/) for fast and optimized static site generation and support for adding custom components from UI frameworks like React, Preact, Svelte, Vue, SolidJS, AlpineJS and Lit
-- Styled with [Tailwind CSS](https://tailwindcss.com/) for utility-first, responsive design
-- Edit the template in [MDX](https://mdxjs.com/), which allows you to write content in Markdown and use JSX variables, expressions, and components
-- Custom components for figures, videos, YouTube embeds, two-column sections, and LaTeX equations
-- Syntax highlighting for code blocks using [Shiki](https://shiki.matsu.io/)
-- Fully responsive layout that looks great on all devices
+- Pre-built components for LaTeX, figures, tables, code blocks (with syntax highlighting), videos, YouTube embeds, 3D objects, comparison sliders, carousels, tabbed slides, and pairs of columns.
+- Optional dark mode :)
+- Automatically converts figures stored as PDF files into images.
+- Compresses images using [AVIF](https://en.wikipedia.org/wiki/AVIF) and uses [responsive images](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images) to minimize loading time.
+- Optimized font rendering, with [resized fallback font faces](https://developer.chrome.com/blog/font-fallbacks) to prevent cumulative layout shift.
+- Responsive, accessible, and SEO-optimized.
+- Add your own components with HTML or any Javascript framework you like. React comes pre-configured, but you could also use Vue, Svelte, etc.
+- Built with [Astro](https://astro.build/), [React](https://react.dev/), [Tailwind](https://tailwindcss.com/), [MDX](https://mdxjs.com/), and [TypeScript](https://www.typescriptlang.org/).
+
+## Examples
+
+- [Token-Efficient Long Video Understanding for Multimodal LLMs](https://research.nvidia.com/labs/lpr/storm/) (NVIDIA Research)
+- [PolyPose: Deformable 2D/3D Registration via Polyrigid Transforms](https://polypose.csail.mit.edu/) (MIT CSAIL)
+- [ByteWrist: A Parallel Robotic Wrist Enabling Flexible and Anthropomorphic Motion for Confined Spaces](https://bytewrist.github.io/) (ByteDance Seed)
+- [Dexterous Teleoperation of 20-DoF ByteDexter Hand via Human Motion Retargeting](https://byte-dexter.github.io/) (ByteDance Seed)
+- [Conformal Prediction as Bayesian Quadrature](https://jakesnell.com/projects/conformal-as-bayes-quad/)
+- [Lossy Compression With Pretrained Diffusion Models](https://jeremyiv.github.io/diffc-project-page/)
+- [RoboSpatial: Teaching Spatial Understanding to 2D and 3D Vision-Language Models for Robotics](https://chanh.ee/RoboSpatial/)
+- [CLIP-RT: Learning Language-Conditioned Robotic Policies from Natural Language Supervision](https://clip-rt.github.io/)
+- [PCO: Precision-Controllable Offset Surfaces with Sharp Features](https://alan-leo-wong.github.io/SIGASIA24-PCO-ProjectPage/)
+- [SCUBA: Salesforce Computer Use Benchmark](https://sfrcua.github.io/SCUBA/)
